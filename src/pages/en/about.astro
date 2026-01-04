@@ -1,0 +1,329 @@
+
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Dr. Piyush Clinic — Natural Healing" description="Piyush Homeopathic Clinic offers safe, natural and effective homeopathic treatment for chronic and acute diseases.">
+
+  <!-- PAGE HEADER -->
+  <header class="pt-28 pb-16 bg-gradient-to-r from-emerald-50 to-teal-50 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-emerald-700">About Doctors</h1>
+    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+      Meet our experienced homeopathy physicians dedicated to natural healing.
+    </p>
+  </header>
+
+  <!-- DOCTOR TABS -->
+  <div class="container text-center mt-10 flex justify-center gap-4">
+    <button class="doctor-tab active px-4 py-2 border rounded" data-doctor="doc1">Dr. Suresh T. Patil</button>
+    <button class="doctor-tab px-4 py-2 border rounded" data-doctor="doc2">Dr. Punam Patil</button>
+  </div>
+
+  <!-- ===================== DOCTOR 1 ===================== -->
+  <section id="doc1" class="doctor-content py-16">
+    <div class="container grid md:grid-cols-2 gap-10 items-center">
+      <!-- Doctor Image -->
+      <div class="flex justify-center">
+        <div class="rounded-2xl overflow-hidden shadow-xl max-w-md w-full">
+          <img src="/images/DrDadaimg.jpg" alt="Dr Suresh Patil" class="w-full h-[420px] object-cover">
+        </div>
+      </div>
+
+      <!-- Doctor Details -->
+      <div>
+        <h2 class="text-3xl font-bold text-emerald-700">Dr. Suresh Patil</h2>
+        <p class="mt-2 font-medium text-slate-600">DHMS, DI Homeo (London)</p>
+        <p class="mt-6 text-slate-700 leading-relaxed">
+          Dr.Suresh Patil has more than <strong>45+ years</strong> of experience in treating acute and chronic diseases using classical homeopathy.
+        </p>
+
+            
+  <div class="mt-6 grid grid-cols-2 gap-4">
+  <!-- Card 1 -->
+  <div class="bg-white shadow rounded-lg p-4 text-center stat-card">
+    <h3 class="text-2xl font-bold text-emerald-600 counter" data-target="45">0+</h3>
+    <p class="text-sm text-gray-600">Years Experience</p>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="bg-white shadow rounded-lg p-4 text-center stat-card">
+    <h3 class="text-2xl font-bold text-emerald-600 counter" data-target="50000">0+</h3>
+    <p class="text-sm text-gray-600">Happy Patients</p>
+  </div>
+</div>
+
+
+        <div class="mt-8 flex gap-4">
+          <a href="/en/contact" class="btn-primary px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700">Book Appointment</a>
+          <button onclick="openDoctorModal('suresh')" class="btn-outline px-4 py-2 border rounded hover:bg-emerald-50">View Profile</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Qualifications & Expertise -->
+    
+<!-- Qualifications & Expertise -->
+<section class="py-12 md:py-16 bg-slate-50">
+  <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 animate-fade-up">
+    Qualifications & Expertise
+  </h2>
+
+  <!-- Single Big Card -->
+  <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-lg p-6 md:p-10
+              hover:shadow-xl transition-all duration-300 animate-fade-up
+              flex flex-col items-center justify-center space-y-6">
+
+    <!-- Section 1: Education -->
+    <div class="bg-emerald-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-emerald-600 text-4xl mb-4">🎓</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-emerald-800">
+        Education
+      </h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-emerald-600">✔</span> DHMS
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-emerald-600">✔</span> DI Homeo (London)
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Specialization -->
+    <div class="bg-teal-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-teal-600 text-4xl mb-4">🩺</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-teal-800">
+        Specialization
+      </h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> Chronic Diseases
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> Skin & Hair
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> Women & Child Health
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Approach -->
+    <div class="bg-lime-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-lime-600 text-4xl mb-4">🌿</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-lime-800">
+        Approach
+      </h3>
+      <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed">
+        Personalized classical homeopathy focused on
+        <span class="text-lime-700 font-semibold">root-cause healing</span>.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+<!-- Section 4: Treatment Philosophy -->
+    <div class="bg-slate-100 rounded-2xl p-6 w-full text-center">
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-slate-800">Treatment Philosophy</h3>
+      <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed max-w-2xl mx-auto">
+        “Homeopathy treats the patient as a whole, not just the disease.” We focus on safe, gentle and long-lasting healing.
+      </p>
+    </div>
+
+</section>
+
+  </section>
+
+  <!-- ===================== DOCTOR 2 ===================== -->
+  <section id="doc2" class="doctor-content py-16 hidden bg-slate-50">
+    <div class="container grid md:grid-cols-2 gap-10 items-center">
+      <div class="md:order-2 flex justify-center">
+        <div class="rounded-2xl overflow-hidden shadow-xl max-w-md w-full">
+          <img src="/images/DrPunamimg.jpg" alt="Dr Punam Patil" class="w-full h-[420px] object-cover">
+        </div>
+      </div>
+
+      <div class="md:order-1">
+        <h2 class="text-3xl font-bold text-emerald-700">Dr. Punam Patil</h2>
+        <p class="mt-2 font-medium text-slate-600">BHMS (MUHS Nashik)</p>
+        <p class="mt-6 text-slate-700 leading-relaxed">
+          Dr.Punam Patil specializes in women & child health, skin disorders, and stress-related conditions with a holistic approach.
+        </p>
+
+            
+  <div class="mt-6 grid grid-cols-2 gap-4">
+  <!-- Card 1 -->
+  <div class="bg-white shadow rounded-lg p-4 text-center stat-card">
+    <h3 class="text-2xl font-bold text-emerald-600 counter" data-target="7">0+</h3>
+    <p class="text-sm text-gray-600">Years Experience</p>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="bg-white shadow rounded-lg p-4 text-center stat-card">
+    <h3 class="text-2xl font-bold text-emerald-600 counter" data-target="6000">0+</h3>
+    <p class="text-sm text-gray-600">Happy Patients</p>
+  </div>
+</div>
+
+
+        <div class="mt-8 flex gap-4">
+          <a href="/en/contact" class="btn-primary px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700">Book Appointment</a>
+          <button onclick="openDoctorModal('punam')" class="btn-outline px-4 py-2 border rounded hover:bg-emerald-50">View Profile</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Qualifications & Expertise -->
+    <!-- Qualifications & Expertise & Treatment Philosophy -->
+<section class="py-16 bg-slate-50">
+  <h2 class="text-3xl font-bold text-center mb-10 animate-fade-up">
+    Qualifications & Expertise
+  </h2>
+
+  <!-- Single Big Card -->
+  <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-lg p-6 md:p-10
+              hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center space-y-6">
+
+    <!-- Section 1: Education -->
+    <div class="bg-emerald-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-emerald-600 text-4xl mb-4">🎓</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-emerald-800">Education</h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-emerald-600">✔</span> BHMS (MUHS Nashik)
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Specialization -->
+    <div class="bg-teal-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-teal-600 text-4xl mb-4">🩺</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-teal-800">Specialization</h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> Chronic Diseases
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> Skin & Hair
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> Women & Child Health
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Approach -->
+    <div class="bg-lime-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-lime-600 text-4xl mb-4">🌿</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-lime-800">Approach</h3>
+      <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed">
+        Personalized classical homeopathy focused on
+        <span class="text-lime-700 font-semibold">root-cause healing</span>.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+<!-- Section 4: Treatment Philosophy -->
+    <div class="bg-slate-100 rounded-2xl p-6 w-full text-center">
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-slate-800">Treatment Philosophy</h3>
+      <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed max-w-2xl mx-auto">
+        “Homeopathy treats the patient as a whole, not just the disease.” We focus on safe, gentle and long-lasting healing.
+      </p>
+    </div>
+
+</section>
+  </section>
+
+  <!-- DOCTOR MODAL -->
+  <div id="doctorModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl max-w-lg w-full p-6 relative">
+      <button onclick="closeDoctorModal()" class="absolute top-3 right-3 text-xl">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/911234567890" target="_blank" id="whatsapp-btn" class="fixed bottom-5 right-5">
+    <img src="/images/whatsapp-icon.png" alt="WhatsApp" class="w-12 h-12">
+  </a>
+
+  <!-- SCRIPT FOR TABS & MODAL (CLIENT SIDE) -->
+  <script is:client>
+    const tabs = document.querySelectorAll('.doctor-tab');
+    const doctors = document.querySelectorAll('.doctor-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.getAttribute('data-doctor');
+        doctors.forEach(d => d.id === target ? d.classList.remove('hidden') : d.classList.add('hidden'));
+      });
+    });
+
+    function openDoctorModal(doctor) {
+      const modal = document.getElementById('doctorModal');
+      const content = document.getElementById('modalContent');
+      if (doctor === 'suresh') {
+        content.innerHTML = `<h2 class="text-xl font-bold mb-2">Dr. Suresh Patil</h2>
+                             <p>DHMS, DI Homeo (London)</p>
+                             <p class="mt-2">45+ years experience treating acute & chronic diseases.</p>
+                             <a href="https://wa.me/919209846029" target="_blank" class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded">Chat on WhatsApp</a>`;
+      } else {
+        content.innerHTML = `<h2 class="text-xl font-bold mb-2">Dr. Punam Patil</h2>
+                             <p>BHMS (MUHS Nashik)</p>
+                             <p class="mt-2">7+ years experience specializing in women & child health, skin & stress disorders.</p>
+                             <a href="https://wa.me/917028655808" target="_blank" class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded">Chat on WhatsApp</a>`;
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeDoctorModal() {
+      document.getElementById('doctorModal').classList.add('hidden');
+    }
+  </script>
+
+<script>
+  const counters = document.querySelectorAll('.counter');
+
+  const runCounter = (counter) => {
+    const target = +counter.getAttribute('data-target');
+    let count = 0;
+    const speed = target / 100;
+
+    const updateCount = () => {
+      if (count < target) {
+        count += speed;
+        counter.innerText = Math.ceil(count) + "+";
+        requestAnimationFrame(updateCount);
+      } else {
+        counter.innerText = target + "+";
+      }
+    };
+
+    updateCount();
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target.querySelector('.counter');
+        runCounter(counter);
+        observer.unobserve(entry.target); // run only once
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  document.querySelectorAll('.stat-card').forEach(card => {
+    observer.observe(card);
+  });
+</script>
+
+</Layout>

@@ -1,22 +1,229 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import "../styles/global.css";
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+const { title } = Astro.props;
+
+const currentUrl = Astro.url.pathname;
+const pathParts = currentUrl.split('/').filter(Boolean);
+const currentLang = pathParts[0] || 'en';
+const currentPage = pathParts.slice(1).join('/') || '';
+const langs = ['en', 'hi', 'mr'];
+const langNames = { en: 'EN', hi: 'हिंदी', mr: 'मराठी' };
+
+const menuLabels = {
+  en: {
+    home: 'Home',
+    about: 'About Doctors',
+    treatments: 'Treatments',
+    whyhomeopathy: 'Why Homeopathy',
+    testimonials: 'Testimonials',
+    contact:'Contact',
+  },
+  hi: {
+    home: 'होम',
+    about: 'डॉक्टरों के बारे में',
+    treatments: 'उपचार',
+    whyhomeopathy: 'होम्योपैथी क्यों',
+    testimonials: 'प्रशंसापत्र',
+    contact:'संपर्क',
+  },
+  mr: {
+    home: 'मुख्यपृष्ठ',
+    about: 'डॉक्टरांविषयी',
+    treatments: 'उपचार',
+    whyhomeopathy: 'होमिओपॅथी का',
+    testimonials: 'प्रशंसापत्रे',
+    contact:'संपर्क',
+  },
+};
+
+const clinicNames = {
+  en: "Piyush Homeopathic Clinic",
+  hi: "पियूष होम्योपैथिक क्लिनिक",
+  mr: "पियूष होमिओपॅथिक क्लिनिक"
+};
+
+---
+
+<!DOCTYPE html>
+<html lang={currentLang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+ <header class="bg-green-100 text-green-700 p-4 shadow-md w-full relative">
+
+
+    <div class="max-w-7xl mx-auto px-2 py-4 flex items-center justify-between">
+
+
+
+<!-- Logo -->
+   <div class="flex items-center gap-4 order-1 md:order-1">
+      <!-- Left Logo -->
+       <img src="/images/download.png" alt="Homeopathy Logo Left" class="h-10 w-10 object-contain" />
+       <!-- Clinic Name -->
+      <!-- Header Clinic Name -->
+<span class="text-2xl font-bold">{clinicNames[currentLang]}</span>
+
+   </div>
+
+
+      <!-- Desktop Menu -->
+      <nav class="hidden md:flex flex-1 justify-center gap-8 order-2">
+        <a href={`/${currentLang}/`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].home}</a>
+        <a href={`/${currentLang}/about`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].about}</a>
+        <a href={`/${currentLang}/treatments`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].treatments}</a>
+        <a href={`/${currentLang}/whyhomeopathy`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].whyhomeopathy}</a>
+        <a href={`/${currentLang}/testimonials`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].testimonials}</a>
+        <a href={`/${currentLang}/contact`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].contact}</a>
+      </nav>
+
+      <!-- Mobile Hamburger + Language -->
+      <div class="flex flex-col items-center gap-2 order-3 md:order-3 relative">
+<div class="flex gap-2 text-sm md:hidden mt-1"></div>
+<div class="flex gap-2 text-sm md:hidden mt-1"></div>
+<div class="flex gap-2 text-sm md:hidden mt-1"></div>
+        <!-- Hamburger (Mobile) - floated above header -->
+        <button id="hamburger" class="md:hidden text-3xl focus:outline-none -mt-12 relative z-50">
+          &#9776;
+        </button>
+<div class="flex gap-2 text-sm md:hidden mt-1"></div>
+<div class="flex gap-2 text-sm md:hidden mt-1"></div>
+        <!-- Language Switcher (Mobile) below hamburger -->
+        <div class="flex gap-2 text-sm md:hidden mt-1">
+          {langs.map((lang, i) => (
+            <>
+              <a href={`/${lang}/${currentPage}`.replace(/\/$/, '')} class="hover:text-yellow-300">{langNames[lang]}</a>
+              {i < langs.length - 1 ? '|' : ''}
+            </>
+          ))}
+        </div>
+
+        <!-- Language Switcher Desktop -->
+        <div class="hidden md:flex gap-2 text-sm mt-0">
+          {langs.map((lang, i) => (
+            <>
+              <a href={`/${lang}/${currentPage}`.replace(/\/$/, '')} class="hover:text-yellow-300">{langNames[lang]}</a>
+              {i < langs.length - 1 ? '|' : ''}
+            </>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    
+    <!-- Mobile Menu -->
+<nav id="main-nav" class="hidden md:hidden flex-col gap-2 px-6 py-4 bg-yellow-100 text-black absolute top-full left-0 w-full z-40">
+
+  <a href={`/${currentLang}/`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
+    <i class="fas fa-home w-5"></i>
+    {menuLabels[currentLang].home}
+  </a>
+
+  <a href={`/${currentLang}/about`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
+    <i class="fas fa-user-md w-5"></i>
+    {menuLabels[currentLang].about}
+  </a>
+
+  <a href={`/${currentLang}/treatments`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
+    <i class="fas fa-stethoscope w-5"></i>
+    {menuLabels[currentLang].treatments}
+  </a>
+
+  <a href={`/${currentLang}/whyhomeopathy`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
+    <i class="fas fa-leaf w-5"></i>
+    {menuLabels[currentLang].whyhomeopathy}
+  </a>
+
+  <a href={`/${currentLang}/testimonials`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
+    <i class="fas fa-comment-dots w-5"></i>
+    {menuLabels[currentLang].testimonials}
+  </a>
+
+  <a href={`/${currentLang}/contact`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
+    <i class="fas fa-envelope w-5"></i>
+    {menuLabels[currentLang].contact}
+  </a>
+
+</nav>
+
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 w-full px-6 py-8">
+    <slot />
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white">
+  <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+
+    <!-- Clinic Info -->
+    <div class="text-center md:text-left">
+      <h4 class="text-lg font-bold hover:text-yellow-400 transition duration-300">{clinicNames[currentLang]}</h4>
+      <p class="text-sm text-white/80 mt-1">Natural & safe homeopathic treatment.</p>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="flex flex-wrap justify-center md:justify-start gap-6">
+      <a href={`/${currentLang}/`} class="text-white text-sm hover:text-yellow-400 transition relative after:block after:w-0 after:h-[2px] after:bg-yellow-400 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">
+        {menuLabels[currentLang].home}
+      </a>
+      <a href={`/${currentLang}/contact`} class="text-white text-sm hover:text-yellow-400 transition relative after:block after:w-0 after:h-[2px] after:bg-yellow-400 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">
+        {menuLabels[currentLang].contact}
+      </a>
+      <a href={`/${currentLang}/treatments`} class="text-white text-sm hover:text-yellow-400 transition relative after:block after:w-0 after:h-[2px] after:bg-yellow-400 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">
+        {menuLabels[currentLang].treatments}
+      </a>
+      <a href={`/${currentLang}/whyhomeopathy`} class="text-white text-sm hover:text-yellow-400 transition relative after:block after:w-0 after:h-[2px] after:bg-yellow-400 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">
+        {menuLabels[currentLang].whyhomeopathy}
+      </a>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="flex gap-4">
+      <a href="#" class="text-white hover:text-yellow-400 transition transform hover:-translate-y-1 hover:scale-110 text-xl"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="text-white hover:text-yellow-400 transition transform hover:-translate-y-1 hover:scale-110 text-xl"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="text-white hover:text-yellow-400 transition transform hover:-translate-y-1 hover:scale-110 text-xl"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" class="text-white hover:text-yellow-400 transition transform hover:-translate-y-1 hover:scale-110 text-xl"><i class="fab fa-twitter"></i></a>
+    </div>
+
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="border-t border-white/30 text-center text-sm text-white/70 py-2 mt-2">
+    © <span id="year"></span> {clinicNames[currentLang]} — All rights reserved.
+  </div>
+
+  <!-- Dynamic Year Script -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</footer>
+
+
+  <!-- Hamburger Toggle Script -->
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const mainNav = document.getElementById('main-nav');
+      hamburger.addEventListener('click', () => {
+        mainNav.classList.toggle('hidden');
+      });
+    });
+  </script>
+
+</body>
+</html>

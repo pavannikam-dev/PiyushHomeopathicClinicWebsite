@@ -1,0 +1,695 @@
+
+---
+import Layout from "../../layouts/Layout.astro";
+
+const treatments = [
+  { icon: "🩺", title: "त्वचेच्या समस्या (एक्झिमा, सोरायसिस, मुरुम)", details: "एक्झिमा, सोरायसिस, मुरुम आणि इतर त्वचेच्या समस्या निसर्गोपचाराद्वारे सुरक्षित आणि नैसर्गिकरीत्या सुधारण्यासाठी उपचार." },
+  { icon: "💇", title: "केस गळती व गंजलेले केस", details: "केस गळती, गंजलेले केस व केस पातळ होणे यासाठी नैसर्गिक होमिओपॅथिक उपाय वापरून मूळ मुळांपासून मजबूत करणे." },
+  { icon: "🫁", title: "दमा व अॅलर्जी", details: "दमा, अॅलर्जी आणि श्वसन समस्यांसाठी होमिओपॅथिक उपचार, फुफ्फुस कार्य सुधारण्यासाठी आणि झटपट सुधारणा मिळविण्यासाठी." },
+  { icon: "🍽️", title: "पचन समस्या", details: "अम्लता, अपचन, बद्धकोष्ठता आणि इतर पचन समस्यांसाठी नैसर्गिक उपाय वापरून उपचार." },
+  { icon: "👩‍⚕️", title: "पीसीओडी व महिला आरोग्य", details: "पीसीओडी, मासिक पाळीच्या समस्या, हार्मोनल असंतुलन व महिला आरोग्याच्या इतर समस्या यासाठी काळजी." },
+  { icon: "🩸", title: "डायबिटीज व थायरॉईड", details: "डायबिटीज, थायरॉईड व चयापचयाच्या समस्या यासाठी होमिओपॅथिक व्यवस्थापन." },
+  { icon: "👶", title: "मुले व बालरोग", details: "साधे बालरोग जसे ताप, सर्दी, खोकला, पचन समस्या आणि त्वचेच्या समस्या यासाठी उपचार." },
+  { icon: "🦴", title: "संधिवात व सांध्य वेदना", details: "संधिवात, सांध्य वेदना आणि हालचालीच्या समस्यांसाठी आराम आणि लवचिकता वाढविण्यासाठी उपचार." },
+  { icon: "🧠", title: "तणाव, चिंता व मानसिक समस्या", details: "तणाव, चिंता, नैराश्य आणि इतर मानसिक आरोग्य समस्यांसाठी होमिओपॅथिक उपाय." },
+  { icon: "🌬️", title: "श्वसनासंबंधी आजार (दमा, सायनस)", details: "सतत खोकला, दमा, सायनस व नाकाच्या अॅलर्जीवर उपचार." },
+  { icon: "🚽", title: "पाइल्स, फिशर व फिस्टुला", details: "हॅमॉरॉइड्स, एनल फिशर व फिस्टुला यासाठी शस्त्रक्रियाविना उपचार." },
+  { icon: "🧬", title: "मकळे, वॉर्ट्स व विटिलिगो", details: "त्वचेवरील वाढ, मकळे, वॉर्ट्स व रंग बदलाच्या समस्या (विटिलिगो) यावर उपचार." },
+  { icon: "⚕️", title: "लैंगिक समस्या", details: "लिंगसंबंधी समस्या, लवकर बियाण, प्रोस्टेट व हार्मोनल असंतुलनासाठी उपचार." },
+  { icon: "🧪", title: "किडनी व पित्ताशयाचे खडे", details: "मूत्रमार्ग आणि किडनी व पित्ताशयाच्या खडे यासाठी होमिओपॅथिक उपाय." },
+  { icon: "❤️", title: "रक्तदाब, कोलेस्टेरॉल व डायबिटीज", details: "रक्तदाब, कोलेस्टेरॉल व डायबिटीजचे नैसर्गिक नियंत्रण व जीवनशैली मार्गदर्शन." },
+  { icon: "🤕", title: "माईग्रेन", details: "माईग्रेन, तणावजन्य डोकेदुखी व वारंवार डोकेदुखीसाठी सौम्य होमिओपॅथिक उपाय." },
+  { icon: "🧘", title: "मानसिक स्वास्थ्य व तणाव कमी", details: "मानसिक स्वास्थ्य सुधार, तणाव कमी करणे व भावनिक संतुलन वाढविणे." },
+];
+---
+
+<Layout title="डॉ. पियुष क्लिनिक — नैसर्गिक उपचार" description="पियुष होमिओपॅथिक क्लिनिक क्रॉनिक व तीव्र आजारांसाठी सुरक्षित, नैसर्गिक आणि प्रभावी होमिओपॅथिक उपचार प्रदान करते.">
+
+  <!-- MARQUEE -->
+  <div class="relative overflow-hidden border-2 border-green-600 rounded-xl bg-black">
+    <!-- Gradient fades with smaller width to reduce clipping -->
+    <div class="absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+
+    <div
+      class="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap py-3 px-8 hover:pause"
+      style="padding-left: 2rem; padding-right: 2rem;"
+    >
+      <span class="mx-1 text-white text-lg md:text-xl lg:text-2xl">पियुष होमिओपॅथी क्लिनिकमध्ये आपले स्वागत आहे!</span>
+      <span class="mx-1 text-white text-lg md:text-xl lg:text-2xl">|</span>
+      <span class="mx-1 text-white text-lg md:text-xl lg:text-2xl">डॉ. सुरेश टी. पाटील व डॉ. पूनम पाटील यांचे विशेषज्ञ होमिओपॅथिक उपचार</span>
+      <span class="mx-1 text-white text-lg md:text-xl lg:text-2xl">|</span>
+      <span class="mx-1 text-white text-lg md:text-xl lg:text-2xl">आजच आपली अपॉइंटमेंट बुक करा!</span>
+
+      <!-- Repeat for seamless scroll -->
+      <span class="mx-1 text-white text-lg md:text-xl lg:text-2xl">पियुष होमिओपॅथी क्लिनिकमध्ये आपले स्वागत आहे!</span>
+      <span class="mx-1 text-white text-lg md:text-xl lg:text-2xl">|</span>
+      <span class="mx-1 text-white text-lg md:text-xl lg:text-2xl">डॉ. सुरेश टी. पाटील व डॉ. पूनम पाटील यांचे विशेषज्ञ होमिओपॅथिक उपचार</span>
+      <span class="mx-1 text-white text-lg md:text-xl lg:text-2xl">|</span>
+      <span class="mx-1 text-white text-lg md:text-xl lg:text-2xl">आजच आपली अपॉइंटमेंट बुक करा!</span>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <header class="pt-6 md:pt-8 pb-2"> 
+  <section class="min-h-[60vh] flex items-center">
+    <div class="container mx-auto grid md:grid-cols-2 gap-8 items-center">
+
+      <!-- Mobile image -->
+      
+ <!-- Mobile Image Slider -->
+<div class="md:hidden mb-4" data-aos="zoom-in">
+  <div class="relative rounded-2xl overflow-hidden shadow-2xl h-64">
+
+    <!-- Slider Track -->
+    <div
+      id="mobile-slider-track"
+      class="flex h-full transition-transform duration-700 ease-in-out"
+    >
+      <img
+        src="/images/slider1.jpg"
+        class="w-full h-full object-cover flex-shrink-0"
+        alt="Homeopathy Clinic 1"
+      />
+      <img
+        src="/images/slider2.jpg"
+        class="w-full h-full object-cover flex-shrink-0"
+        alt="Homeopathy Clinic 2"
+      />
+      <img
+        src="/images/slider3.jpg"
+        class="w-full h-full object-cover flex-shrink-0"
+        alt="Homeopathy Clinic 3"
+      />
+       <img
+        src="/images/slider4.jpg"
+        class="w-full h-full object-cover flex-shrink-0"
+        alt="Homeopathy Clinic 3"
+      />
+    </div>
+
+    <!-- Dots -->
+    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+      <span class="dot w-2 h-2 rounded-full bg-white"></span>
+      <span class="dot w-2 h-2 rounded-full bg-white/40"></span>
+      <span class="dot w-2 h-2 rounded-full bg-white/40"></span>
+    </div>
+
+  </div>
+</div>
+
+
+      <!-- Text content -->
+      <div data-aos="fade-right" class="space-y-3">
+        <h1
+          class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-500 via-emerald-600 to-teal-600"
+          style="line-height: 1.2; padding-top: 0.2rem; margin-top: 0; overflow: visible;"
+        >
+          पियुष होमिओपॅथी क्लिनिक, चोपडा व नाशिक
+        </h1>
+        <p class="text-base sm:text-lg text-slate-700 max-w-xl">
+          पियुष होमिओपॅथी क्लिनिक क्रॉनिक व तीव्र आजारांसाठी सुरक्षित, सौम्य व प्रभावी होमिओपॅथिक उपचार प्रदान करते.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="/mr/contact" class="bg-green-600 text-white px-5 py-2 rounded-lg shadow hover:bg-green-700 transition">अपॉइंटमेंट बुक करा</a>
+          
+        </div>
+      </div>
+
+       <!-- Desktop Image Slider -->
+     <div class="hidden md:block" data-aos="zoom-in">
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl h-80">
+
+          <!-- Slider Track -->
+           <div
+              id="desktop-slider-track"
+              class="flex h-full transition-transform duration-700 ease-in-out">
+      <img
+        src="/images/slider1.jpg"
+        class="w-full h-full object-cover flex-shrink-0"
+        alt="Clinic Image 1"
+      />
+      <img
+        src="/images/slider2.jpg"
+        class="w-full h-full object-cover flex-shrink-0"
+        alt="Clinic Image 2"
+      />
+      <img
+        src="/images/slider3.jpg"
+        class="w-full h-full object-cover flex-shrink-0"
+        alt="Clinic Image 3"
+      />
+      <img
+        src="/images/slider4.jpg"
+        class="w-full h-full object-cover flex-shrink-0"
+        alt="Clinic Image 3"
+      />
+    </div>
+
+    <!-- Dots -->
+    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      <span class="desktop-dot w-2.5 h-2.5 rounded-full bg-white"></span>
+      <span class="desktop-dot w-2.5 h-2.5 rounded-full bg-white/40"></span>
+      <span class="desktop-dot w-2.5 h-2.5 rounded-full bg-white/40"></span>
+    </div>
+
+  </div>
+</div>
+
+    </div>
+  </section>
+</header>
+
+
+  <!-- ABOUT DOCTORS, TREATMENTS, CONSULTATION, WHY CHOOSE HOMEOPATHY, CTA -->
+  <!-- ================= ABOUT DOCTORS ================= -->
+  <header class="pt-28 pb-16 bg-gradient-to-r from-emerald-50 to-teal-50 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-emerald-700">डॉक्टरांबद्दल</h1>
+    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+      नैसर्गिक उपचारासाठी समर्पित आमच्या अनुभवी होमिओपॅथी डॉक्टरांना भेटा.
+    </p>
+  </header>
+
+  <!-- Doctor Sections -->
+  <!-- Doctor 1 -->
+  <section id="doc1" class="doctor-content py-16">
+    <div class="container grid md:grid-cols-2 gap-10 items-center">
+      <div class="flex justify-center">
+        <div class="rounded-2xl overflow-hidden shadow-xl max-w-md w-full">
+          <img src="/images/DrDadaimg.jpg" alt="Dr Suresh Patil" class="w-full h-[420px] object-cover">
+        </div>
+      </div>
+      <div>
+        <h2 class="text-3xl font-bold text-emerald-700">डॉ. सुरेश पाटील</h2>
+        <p class="mt-2 font-medium text-slate-600">DHMS, DI होमिओ (लंडन)</p>
+        <p class="mt-6 text-slate-700 leading-relaxed">
+          डॉ. सुरेश पाटील यांना शास्त्रीय होमिओपॅथी वापरून तीव्र आणि दीर्घकालीन आजारांवर <strong>४५+ वर्षांचा</strong> अनुभव आहे.
+        </p>
+       
+       
+<div class="mt-6 grid grid-cols-2 gap-4">
+  <!-- कार्ड 1 -->
+  <div class="bg-white shadow rounded-lg p-4 text-center stat-card">
+    <h3 class="text-2xl font-bold text-emerald-600 counter" data-target="45">0+</h3>
+    <p class="text-sm text-gray-600">वर्षांचा अनुभव</p>
+  </div>
+
+  <!-- कार्ड 2 -->
+  <div class="bg-white shadow rounded-lg p-4 text-center stat-card">
+    <h3 class="text-2xl font-bold text-emerald-600 counter" data-target="50000">0+</h3>
+    <p class="text-sm text-gray-600">समाधानी रुग्ण</p>
+  </div>
+</div>
+
+
+
+       
+
+        <div class="mt-8 flex gap-4">
+          <a href="/mr/contact" class="btn-primary px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700">अपॉइंटमेंट बुक करा</a>
+         <button onclick="openDoctorModal('suresh')" class="btn-outline px-4 py-2 border rounded hover:bg-emerald-50">प्रोफाईल पहा</button>
+       
+<!-- Doctor Modal -->
+<div id="doctorModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
+  <div class="bg-white rounded-xl shadow-lg p-6 max-w-md w-full relative">
+    <button onclick="closeDoctorModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+
+        </div>
+      </div>
+    </div>
+
+   <!-- Qualifications & Expertise & Treatment Philosophy -->
+<section class="py-16 bg-slate-50">
+  <h2 class="text-3xl font-bold text-center mb-10 animate-fade-up">
+    पात्रता आणि कौशल्य
+  </h2>
+
+  <!-- Single Big Card -->
+  <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-lg p-6 md:p-10
+              hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center space-y-6">
+
+    <!-- Section 1: Education -->
+    <div class="bg-emerald-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-emerald-600 text-4xl mb-4">🎓</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-emerald-800">शिक्षण</h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-emerald-600">✔</span> DHMS
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-emerald-600">✔</span> DI Homeo (London)
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Specialization -->
+    <div class="bg-teal-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-teal-600 text-4xl mb-4">🩺</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-teal-800">विशेष कौशल्य</h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> दीर्घकालीन आजार
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> त्वचा आणि केस
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> महिला आणि बाल आरोग्य
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Approach -->
+    <div class="bg-lime-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-lime-600 text-4xl mb-4">🌿</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-lime-800">दृष्टीकोन</h3>
+      <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed">
+        वैयक्तिकृत शास्त्रीय होमिओपॅथी, ज्यावर लक्ष केंद्रीत केले जाते
+        <span class="text-lime-700 font-semibold">मुळ कारणावर आधारित उपचार</span>.
+      </p>
+    </div>
+
+    
+
+  </div>
+</section>
+
+
+  </section>
+
+  <!-- Doctor 2 -->
+  <section class="doctor-content py-16 bg-slate-50">
+    <div class="container grid md:grid-cols-2 gap-10 items-center">
+      <div class="md:order-2 flex justify-center">
+        <div class="rounded-2xl overflow-hidden shadow-xl max-w-md w-full">
+          <img src="/images/DrPunamimg.jpg" alt="Dr Punam Patil" class="w-full h-[420px] object-cover">
+        </div>
+      </div>
+      <div class="md:order-1">
+        <h2 class="text-3xl font-bold text-emerald-700">डॉ. पुनम पाटील</h2>
+        <p class="mt-2 font-medium text-slate-600">BHMS (MUHS नाशिक)</p>
+        <p class="mt-6 text-slate-700 leading-relaxed">
+          डॉ. पुनम पाटील स्त्री व बाल आरोग्य, त्वचा रोग, आणि तणाव संबंधित आजारांमध्ये विशेषज्ञ असून संपूर्ण दृष्टिकोनातून उपचार करतात.
+        </p>
+        
+        
+ <div class="mt-6 grid grid-cols-2 gap-4">
+  <!-- कार्ड 1 -->
+  <div class="bg-white shadow rounded-lg p-4 text-center stat-card">
+    <h3 class="text-2xl font-bold text-emerald-600 counter" data-target="7">०+</h3>
+    <p class="text-sm text-gray-600">वर्षांचा अनुभव</p>
+  </div>
+
+  <!-- कार्ड 2 -->
+  <div class="bg-white shadow rounded-lg p-4 text-center stat-card">
+    <h3 class="text-2xl font-bold text-emerald-600 counter" data-target="6000">०+</h3>
+    <p class="text-sm text-gray-600">समाधानी रुग्ण</p>
+  </div>
+</div>
+
+
+
+
+        <div class="mt-8 flex gap-4">
+          <a href="/mr/contact" class="btn-primary px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700">अपॉइंटमेंट बुक करा</a>
+          <button onclick="openDoctorModal('punam')" class="btn-outline px-4 py-2 border rounded hover:bg-emerald-50">प्रोफाइल पहा</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Qualifications & Expertise & Treatment Philosophy -->
+<section class="py-16 bg-slate-50">
+  <h2 class="text-3xl font-bold text-center mb-10 animate-fade-up">
+    पात्रता आणि कौशल्य
+  </h2>
+
+  <!-- Single Big Card -->
+  <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-lg p-6 md:p-10
+              hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center space-y-6">
+
+    <!-- Section 1: Education -->
+    <div class="bg-emerald-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-emerald-600 text-4xl mb-4">🎓</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-emerald-800">शिक्षण</h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-emerald-600">✔</span> BHMS (MUHS नाशिक)
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Specialization -->
+    <div class="bg-teal-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-teal-600 text-4xl mb-4">🩺</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-teal-800">विशेष कौशल्य</h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> दीर्घकालीन आजार
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> त्वचा आणि केस
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> महिला आणि बाल आरोग्य
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Approach -->
+    <div class="bg-lime-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-lime-600 text-4xl mb-4">🌿</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-lime-800">दृष्टीकोन</h3>
+      <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed">
+        वैयक्तिकृत शास्त्रीय होमिओपॅथी, ज्यावर लक्ष केंद्रीत केले जाते
+        <span class="text-lime-700 font-semibold">मुळ कारणावर आधारित उपचार</span>.
+      </p>
+    </div>
+  </div>
+</section>
+<section>
+<!-- Section 4: Treatment Philosophy -->
+    <div class="bg-slate-100 rounded-2xl p-6 w-full text-center">
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-slate-800">उपचार तत्वज्ञान</h3>
+      <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed max-w-2xl mx-auto">
+        “होमिओपॅथी रुग्णाला संपूर्ण शरीराच्या दृष्टिकोनातून बघते, फक्त आजारावर नाही.” आम्ही सुरक्षित, सौम्य आणि दीर्घकालीन उपचारावर लक्ष केंद्रित करतो.
+      </p>
+    </div>
+</section>
+  <!-- ================= TREATMENTS ================= -->
+  <header class="pt-12 pb-4 bg-gradient-to-b from-emerald-50 to-white text-center">
+    <div class="text-4xl mb-2">🩺</div>
+    <h1 class="text-3xl md:text-4xl font-bold text-emerald-700">आमचे उपचार</h1>
+    <p class="mt-1 max-w-xl mx-auto text-gray-600">
+      क्रॉनिक व तीव्र आजारांसाठी वैयक्तिकृत होमिओपॅथिक उपचार
+    </p>
+  </header>
+
+
+  <section class="max-w-7xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {treatments.map((item, index) => (
+        <div class="p-6 rounded-xl shadow-md bg-gradient-to-r from-emerald-50 to-emerald-100 hover:from-emerald-100 hover:to-emerald-200 transition hover:-translate-y-1 hover:shadow-xl">
+          <div class="text-4xl mb-3">{item.icon}</div>
+          <h3 class="text-xl font-semibold mb-2 text-emerald-700">{item.title}</h3>
+          <p class="text-gray-600">{item.details}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+<!-- ================= सल्लामसलत प्रक्रिया ================= -->
+<section class="py-12 bg-emerald-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-emerald-700 text-center mb-8">
+      सल्लामसलत प्रक्रिया
+    </h2>
+    <p class="max-w-3xl mx-auto text-gray-700 text-center">
+      आमची सल्लामसलत तुमच्या आरोग्याची संपूर्ण दृष्टीने समजून घेण्यासाठी आणि वैयक्तिक होमिओपॅथिक उपचार देण्यासाठी संरचित आहे.
+    </p>
+    <ul class="mt-8 grid sm:grid-cols-2 md:grid-cols-3 gap-6 text-gray-700">
+      <li>1️⃣ प्रारंभिक मूल्यमापन</li>
+      <li>2️⃣ प्रकरण इतिहास आणि लक्षणांचे विश्लेषण</li>
+      <li>3️⃣ वैयक्तिकृत उपचार योजना</li>
+      <li>4️⃣ नियमित फॉलो-अप</li>
+      <li>5️⃣ जीवनशैली आणि आहार मार्गदर्शन</li>
+      <li>6️⃣ दीर्घकालीन देखभाल</li>
+    </ul>
+  </div>
+</section>
+
+
+  <!-- ================= CONSULTATION ================= -->
+  <section class="bg-emerald-50 py-16 px-4 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-emerald-700 mb-4">आपल्या आरोग्याची काळजी घ्या</h2>
+    <p class="max-w-2xl mx-auto mb-6 text-gray-700 text-lg">आपल्या आरोग्यासाठी सुरक्षित, नैसर्गिक आणि प्रभावी होमिओपॅथिक उपचारासाठी आजच आमच्याशी संपर्क साधा.</p>
+    <a href="/mr/contact" class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition">अपॉइंटमेंट बुक करा</a>
+  </section>
+
+  <!-- ================= WHY CHOOSE HOMEOPATHY ================= -->
+  <section class="max-w-5xl mx-auto px-4 py-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-emerald-700 mb-10 text-center">होमिओपॅथी का निवडावी?</h2>
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="text-center">
+        <div class="text-5xl mb-4">🌿</div>
+        <h3 class="text-xl font-semibold mb-2">सौम्य आणि सुरक्षित</h3>
+        <p class="text-gray-600">होमिओपॅथी उपचार सौम्य, दुष्परिणामविरहित आणि सर्व वयोगटांसाठी सुरक्षित असतात.</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl mb-4">🌱</div>
+        <h3 class="text-xl font-semibold mb-2">नैसर्गिक उपाय</h3>
+        <p class="text-gray-600">रसायनांच्या जागी नैसर्गिक घटक वापरून शरीराची नैसर्गिक रोगप्रतिकारक शक्ती वाढविते.</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl mb-4">💚</div>
+        <h3 class="text-xl font-semibold mb-2">पूर्ण आरोग्य सुधारणा</h3>
+        <p class="text-gray-600">रुग्णाच्या संपूर्ण शरीर आणि मानसिक आरोग्याचा विचार करून उपचार करतो.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- ================= संपर्क साधा ================= -->
+<header class="pt-16 pb-12 bg-emerald-50 text-center">
+  <h1 class="text-4xl font-bold text-emerald-700">संपर्क साधा</h1>
+  <p class="text-red-600 mt-2 font-medium">
+    वैद्यकीय आपत्कालीन परिस्थितीसाठी, त्वरित <strong>108</strong> वर कॉल करा.
+  </p>
+</header>
+
+<!-- Contact Section -->
+<!-- Contact Section - Colorful & Responsive -->
+<section class="py-12 bg-emerald-50">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Branch 1 Card -->
+    <div class="bg-gradient-to-br from-emerald-100 to-emerald-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition space-y-4">
+      <h3 class="text-lg font-bold text-emerald-800 flex items-center gap-2">🏥 रुग्णालय शाखा 1</h3>
+      <h5 class="text-sm font-medium text-emerald-700">गांधी चौक, चोपडा, महाराष्ट्र 425107.</h5>
+      <a href="tel:+917028655808" class="inline-block text-green-700 font-semibold">📞 +91 7028655808</a>
+
+      <!-- Timings -->
+      <div class="flex flex-col md:flex-row md:space-x-3 space-y-2 md:space-y-0">
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">⏰ सकाळी 10 ते दुपारी 1</p>
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">⏰ सायंकाळी 5 ते 8</p>
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">🛑 शनिवार बंद</p>
+      </div>
+
+      <iframe
+        class="w-full h-44 rounded-xl border-2 border-emerald-300 mt-3"
+        src="https://www.google.com/maps?q=Shop No-6, Chaitnydeep Market, Gandhi Chowk, Chopda, Maharashtra 425107+1&output=embed"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <!-- Branch 2 Card -->
+    <div class="bg-gradient-to-br from-emerald-100 to-emerald-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition space-y-4">
+      <h3 class="text-lg font-bold text-emerald-800 flex items-center gap-2">🏥 रुग्णालय शाखा 2</h3>
+      <h5 class="text-sm font-medium text-emerald-700">निमाणी बस स्थानक समोर, पंचवटी, नाशिक.</h5>
+      <a href="tel:+919822599206" class="inline-block text-green-700 font-semibold">📞 +91 9822599206</a>
+
+      <div class="flex flex-col md:flex-row md:space-x-3 space-y-2 md:space-y-0">
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">⏰ सकाळी 9 ते संध्याकाळी 6</p>
+      </div>
+
+      <iframe
+        class="w-full h-44 rounded-xl border-2 border-emerald-300 mt-3"
+        src="https://www.google.com/maps?q=Shop No-6, Chaitnydeep Market, Gandhi Chowk, Chopda, Maharashtra 425107+2&output=embed"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <!-- Appointment / Inquiry Form -->
+    <!-- आपल्या Astro कॉम्पोनेंटमध्ये -->
+<form
+  class="bg-gradient-to-br from-white to-emerald-50 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition space-y-4"
+  onsubmit="sendWhatsApp(); return false;"
+>
+  <h3 class="text-xl font-bold text-emerald-700">अपॉइंटमेंट / चौकशी</h3>
+
+  <input id="name" name="name" required placeholder="नाव" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400" />
+  <input id="phone" name="phone" required placeholder="फोन" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400" />
+  <input id="date" name="date" type="date" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400" />
+  <select id="reason" name="reason" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400">
+    <option>अपॉइंटमेंट विनंती</option>
+    <option>सामान्य चौकशी</option>
+    <option>बिलिंग</option>
+    <option>अभिप्राय</option>
+  </select>
+  <textarea id="message" name="message" placeholder="संदेश" class="w-full border border-emerald-300 p-2 rounded h-24 focus:ring-2 focus:ring-emerald-400"></textarea>
+
+  <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-lg hover:bg-emerald-700 transition transform hover:-translate-y-0.5">
+    WhatsApp द्वारे पाठवा
+  </button>
+</form>
+
+<script type="text/javascript" client:load>
+function sendWhatsApp() {
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const date = document.getElementById("date").value;
+  const reason = document.getElementById("reason").value;
+  const message = document.getElementById("message").value.trim();
+
+  const whatsappNumber = "917028655808"; // रुग्णालयाचा नंबर
+
+  const formattedMessage = 
+`🏥 *रुग्णालय चौकशी*
+
+👤 नाव: ${name}
+📞 फोन: ${phone}
+📅 अपॉइंटमेंट तारीख: ${date || "निर्दिष्ट नाही"}
+📌 कारण: ${reason}
+
+📝 संदेश:
+${message || "नाही"}
+
+⚠️ गैर-तत्काल चौकशीसाठी`
+  
+  const encodedMessage = encodeURIComponent(formattedMessage);
+  const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+  window.open(url, "_blank");
+}
+</script>
+
+
+  </div>
+</section>
+
+
+
+
+  <!-- ================= CALL TO ACTION ================= -->
+  <section class="bg-gradient-to-r from-green-600 to-emerald-700 py-16 text-center text-white">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">आजच आपली अपॉइंटमेंट बुक करा</h2>
+    <p class="max-w-xl mx-auto mb-8">तुमच्या आरोग्यासाठी नैसर्गिक, सुरक्षित आणि प्रभावी होमिओपॅथिक उपचार घेण्यासाठी आम्हाला संपर्क करा.</p>
+    <a href="/mr/contact" class="inline-block bg-white text-green-700 px-10 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">अपॉइंटमेंट बुक करा</a>
+  </section>
+
+  <style>
+    @keyframes marquee {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    .animate-\[marquee_30s_linear_infinite\] {
+      animation: marquee 30s linear infinite;
+    }
+    .animate-\[marquee_30s_linear_infinite\]:hover {
+      animation-play-state: paused;
+    }
+  </style>
+
+ <!--script for slider -->
+<script is:inline>
+  window.addEventListener("load", () => {
+
+    function initSlider(trackId, dotClass) {
+      const track = document.getElementById(trackId);
+      const dots = document.querySelectorAll(`.${dotClass}`);
+
+      if (!track || dots.length === 0) return;
+
+      const slides = track.children.length;
+      let index = 0;
+
+      setInterval(() => {
+        index = (index + 1) % slides;
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("bg-white", i === index);
+          dot.classList.toggle("bg-white/40", i !== index);
+        });
+      }, 3500);
+    }
+
+    // Init sliders
+    initSlider("mobile-slider-track", "dot");
+    initSlider("desktop-slider-track", "desktop-dot");
+
+  });
+</script>
+
+
+  <!-- SCRIPT FOR TABS & MODAL -->
+  <script is:client>
+    const tabs = document.querySelectorAll('.doctor-tab');
+    const doctors = document.querySelectorAll('.doctor-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.getAttribute('data-doctor');
+        doctors.forEach(d => d.id === target ? d.classList.remove('hidden') : d.classList.add('hidden'));
+      });
+    });
+
+    function openDoctorModal(doctor) {
+      const modal = document.getElementById('doctorModal');
+      const content = document.getElementById('modalContent');
+      if (doctor === 'suresh') {
+        content.innerHTML = `<h2 class="text-xl font-bold mb-2">डॉ. सुरेश पाटील</h2>
+                             <p>DHMS, DI होमिओ (लंडन)</p>
+                             <p class="mt-2">45+ वर्षांचा अनुभव, तीव्र व दीर्घकालीन आजारांवर उपचार.</p>
+                             <a href="https://wa.me/919209846029" target="_blank" class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded">WhatsApp वर चॅट करा</a>`;
+      } else {
+        content.innerHTML = `<h2 class="text-xl font-bold mb-2">डॉ. पुनम पाटील</h2>
+                             <p>BHMS (MUHS नाशिक)</p>
+                             <p class="mt-2">7+ वर्षांचा अनुभव, महिला व बाल आरोग्य, त्वचा व तणाव विकार विशेषज्ञ.</p>
+                             <a href="https://wa.me/917028655808" target="_blank" class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded">WhatsApp वर चॅट करा</a>`;
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeDoctorModal() {
+      document.getElementById('doctorModal').classList.add('hidden');
+    }
+  </script>
+
+<script>
+  const counters = document.querySelectorAll('.counter');
+
+  const runCounter = (counter) => {
+    const target = +counter.getAttribute('data-target');
+    let count = 0;
+    const speed = target / 100;
+
+    const updateCount = () => {
+      if (count < target) {
+        count += speed;
+        counter.innerText = Math.ceil(count) + "+";
+        requestAnimationFrame(updateCount);
+      } else {
+        counter.innerText = target + "+";
+      }
+    };
+
+    updateCount();
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target.querySelector('.counter');
+        runCounter(counter);
+        observer.unobserve(entry.target); // run only once
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  document.querySelectorAll('.stat-card').forEach(card => {
+    observer.observe(card);
+  });
+</script>
+
+</Layout>

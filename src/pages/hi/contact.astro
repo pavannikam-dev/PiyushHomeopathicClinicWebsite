@@ -1,0 +1,111 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="संपर्क करें | Piyush Homeopathy Clinic">
+<!-- ================= संपर्क करें ================= -->
+<header class="pt-16 pb-12 bg-emerald-50 text-center">
+  <h1 class="text-4xl font-bold text-emerald-700">संपर्क करें</h1>
+  <p class="text-red-600 mt-2 font-medium">
+    चिकित्सकीय आपात स्थिति के लिए, तुरंत <strong>108</strong> पर कॉल करें।
+  </p>
+</header>
+
+<!-- Contact Section -->
+<section class="py-12 bg-emerald-50">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Branch 1 Card -->
+    <div class="bg-gradient-to-br from-emerald-100 to-emerald-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition space-y-4">
+      <h3 class="text-lg font-bold text-emerald-800 flex items-center gap-2">🏥 अस्पताल शाखा 1</h3>
+      <h5 class="text-sm font-medium text-emerald-700">गांधी चौक, चोपड़ा, महाराष्ट्र 425107.</h5>
+      <a href="tel:+917028655808" class="inline-block text-green-700 font-semibold">📞 +91 7028655808</a>
+
+      <!-- Timings -->
+      <div class="flex flex-col md:flex-row md:space-x-3 space-y-2 md:space-y-0">
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">⏰ सुबह 10 से दोपहर 1</p>
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">⏰ शाम 5 से 8</p>
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">🛑 शनिवार बंद</p>
+      </div>
+
+      <iframe
+        class="w-full h-44 rounded-xl border-2 border-emerald-300 mt-3"
+        src="https://www.google.com/maps?q=Shop No-6, Chaitnydeep Market, Gandhi Chowk, Chopda, Maharashtra 425107+1&output=embed"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <!-- Branch 2 Card -->
+    <div class="bg-gradient-to-br from-emerald-100 to-emerald-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition space-y-4">
+      <h3 class="text-lg font-bold text-emerald-800 flex items-center gap-2">🏥 अस्पताल शाखा 2</h3>
+      <h5 class="text-sm font-medium text-emerald-700">निमाणी बस स्टैंड के सामने, पंचवटी, नासिक.</h5>
+      <a href="tel:+919822599206" class="inline-block text-green-700 font-semibold">📞 +91 9822599206</a>
+
+      <div class="flex flex-col md:flex-row md:space-x-3 space-y-2 md:space-y-0">
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">⏰ सुबह 9 से शाम 6</p>
+      </div>
+
+      <iframe
+        class="w-full h-44 rounded-xl border-2 border-emerald-300 mt-3"
+        src="https://www.google.com/maps?q=Shop No-6, Chaitnydeep Market, Gandhi Chowk, Chopda, Maharashtra 425107+2&output=embed"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <!-- Appointment / Inquiry Form -->
+    <form
+      class="bg-gradient-to-br from-white to-emerald-50 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition space-y-4"
+      onsubmit="sendWhatsApp(); return false;"
+    >
+      <h3 class="text-xl font-bold text-emerald-700">अपॉइंटमेंट / पूछताछ</h3>
+
+      <input id="name" name="name" required placeholder="नाम" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400" />
+      <input id="phone" name="phone" required placeholder="फ़ोन" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400" />
+      <input id="date" name="date" type="date" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400" />
+      <select id="reason" name="reason" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400">
+        <option>अपॉइंटमेंट का अनुरोध</option>
+        <option>सामान्य पूछताछ</option>
+        <option>बिलिंग</option>
+        <option>सुझाव</option>
+      </select>
+      <textarea id="message" name="message" placeholder="संदेश" class="w-full border border-emerald-300 p-2 rounded h-24 focus:ring-2 focus:ring-emerald-400"></textarea>
+
+      <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-lg hover:bg-emerald-700 transition transform hover:-translate-y-0.5">
+        WhatsApp के माध्यम से भेजें
+      </button>
+    </form>
+
+    <script type="text/javascript" client:load>
+    function sendWhatsApp() {
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const date = document.getElementById("date").value;
+      const reason = document.getElementById("reason").value;
+      const message = document.getElementById("message").value.trim();
+
+      const whatsappNumber = "917028655808"; // अस्पताल नंबर
+
+      const formattedMessage = 
+`🏥 *अस्पताल पूछताछ*
+
+👤 नाम: ${name}
+📞 फ़ोन: ${phone}
+📅 अपॉइंटमेंट तारीख: ${date || "निर्दिष्ट नहीं"}
+📌 कारण: ${reason}
+
+📝 संदेश:
+${message || "N/A"}
+
+⚠️ गैर-आपातकालीन पूछताछ`;
+      
+      const encodedMessage = encodeURIComponent(formattedMessage);
+      const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      window.open(url, "_blank");
+    }
+    </script>
+
+  </div>
+</section>
+
+</Layout>

@@ -1,0 +1,290 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="डॉक्टरों के बारे में | Piyush Homeopathy Clinic">
+
+  <!-- PAGE HEADER -->
+  <header class="pt-28 pb-16 bg-gradient-to-r from-emerald-50 to-teal-50 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-emerald-700">डॉक्टरों के बारे में</h1>
+    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+      हमारे अनुभवी होम्योपैथिक चिकित्सकों से मिलें, जो प्राकृतिक उपचार के लिए समर्पित हैं।
+    </p>
+  </header>
+
+  <!-- DOCTOR TABS -->
+  <div class="container text-center mt-10 flex justify-center gap-4">
+    <button class="doctor-tab active px-4 py-2 border rounded" data-doctor="doc1">डॉ. सुरेश टी. पाटील</button>
+    <button class="doctor-tab px-4 py-2 border rounded" data-doctor="doc2">डॉ. पुनम पाटील</button>
+  </div>
+
+  <!-- ===================== DOCTOR 1 ===================== -->
+  <section id="doc1" class="doctor-content py-16">
+    <div class="container grid md:grid-cols-2 gap-10 items-center">
+
+      <!-- Doctor Image -->
+      <div class="flex justify-center">
+        <div class="rounded-2xl overflow-hidden shadow-xl max-w-md w-full">
+          <img src="/images/DrDadaimg.jpg" alt="डॉ. सुरेश पाटील" class="w-full h-[420px] object-cover">
+        </div>
+      </div>
+
+      <!-- Doctor Details -->
+      <div>
+        <h2 class="text-3xl font-bold text-emerald-700">डॉ. सुरेश पाटील</h2>
+        <p class="mt-2 font-medium text-slate-600">DHMS, DI होमियो (लंदन)</p>
+        <p class="mt-6 text-slate-700 leading-relaxed">
+          डॉ. सुरेश पाटील के पास <strong>45+ वर्षों</strong> का अनुभव है, वे क्लासिकल होम्योपैथी का उपयोग करके तीव्र और पुरानी बीमारियों का उपचार करते हैं।
+        </p>
+
+        <div class="mt-6 grid grid-cols-2 gap-4">
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-emerald-600">45+</h3>
+            <p class="text-sm">वर्ष अनुभव</p>
+          </div>
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-emerald-600">50000+</h3>
+            <p class="text-sm">संतुष्ट मरीज</p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+          <a href="/hi/contact" class="btn-primary px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700">अपॉइंटमेंट बुक करें</a>
+          <button onclick="openDoctorModal('suresh')" class="btn-outline px-4 py-2 border rounded hover:bg-emerald-50">प्रोफ़ाइल देखें</button>
+       <!-- Doctor Modal -->
+<div id="doctorModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
+  <div class="bg-white rounded-xl shadow-lg p-6 max-w-md w-full relative">
+    <button onclick="closeDoctorModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Qualifications & Expertise -->
+    <!-- Qualifications & Expertise -->
+<section class="py-12 md:py-16 bg-slate-50">
+  <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 animate-fade-up">
+    योग्यता और विशेषज्ञता
+  </h2>
+
+  <!-- Single Big Card -->
+  <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-lg p-6 md:p-10
+              hover:shadow-xl transition-all duration-300 animate-fade-up
+              flex flex-col items-center justify-center space-y-6">
+
+    <!-- Section 1: Education -->
+    <div class="bg-emerald-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-emerald-600 text-4xl mb-4">🎓</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-emerald-800">
+        शिक्षा
+      </h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-emerald-600">✔</span> DHMS
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-emerald-600">✔</span> DI होम्योपैथी (लंदन)
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Specialization -->
+    <div class="bg-teal-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-teal-600 text-4xl mb-4">🩺</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-teal-800">
+        विशेषज्ञता
+      </h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> दीर्घकालिक रोग
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> त्वचा और बाल
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> महिला और बाल स्वास्थ्य
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Approach -->
+    <div class="bg-lime-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-lime-600 text-4xl mb-4">🌿</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-lime-800">
+        दृष्टिकोण
+      </h3>
+      <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed">
+        व्यक्तिगत शास्त्रीय होम्योपैथी, जो ध्यान केंद्रित करती है
+        <span class="text-lime-700 font-semibold">मूल कारण से उपचार</span> पर।
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- Treatment Philosophy -->
+    <section class="py-16 bg-slate-50 text-center">
+      <h2 class="text-3xl font-bold mb-6">उपचार दर्शन</h2>
+      <p class="text-slate-700 leading-relaxed max-w-3xl mx-auto">
+        “होम्योपैथी रोगी को पूरी तरह से देखती है, केवल बीमारी को नहीं।” हम सुरक्षित, कोमल और लंबे समय तक चलने वाले उपचार पर ध्यान केंद्रित करते हैं।
+      </p>
+    </section>
+  </section>
+
+  <!-- ===================== DOCTOR 2 ===================== -->
+  <section id="doc2" class="doctor-content py-16 hidden bg-slate-50">
+    <div class="container grid md:grid-cols-2 gap-10 items-center">
+
+      <div class="md:order-2 flex justify-center">
+        <div class="rounded-2xl overflow-hidden shadow-xl max-w-md w-full">
+          <img src="/images/DrPunamimg.jpg" alt="डॉ. पुनम पाटील" class="w-full h-[420px] object-cover">
+        </div>
+      </div>
+
+      <div class="md:order-1">
+        <h2 class="text-3xl font-bold text-emerald-700">डॉ. पुनम पाटील</h2>
+        <p class="mt-2 font-medium text-slate-600">BHMS (MUHS नासिक)</p>
+        <p class="mt-6 text-slate-700 leading-relaxed">
+          डॉ. पुनम पाटील महिलाओं और बच्चों के स्वास्थ्य, त्वचा विकारों और तनाव संबंधी समस्याओं में विशेषज्ञ हैं, और एक समग्र दृष्टिकोण अपनाती हैं।
+        </p>
+
+        <div class="mt-6 grid grid-cols-2 gap-4">
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-emerald-600">7+</h3>
+            <p class="text-sm">वर्ष अनुभव</p>
+          </div>
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-emerald-600">300+</h3>
+            <p class="text-sm">संतुष्ट मरीज</p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex gap-4">
+          <a href="/hi/contact" class="btn-primary px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700">अपॉइंटमेंट बुक करें</a>
+          <button onclick="openDoctorModal('punam')" class="btn-outline px-4 py-2 border rounded hover:bg-emerald-50">प्रोफ़ाइल देखें</button>
+        <!-- Doctor Modal -->
+<div id="doctorModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
+  <div class="bg-white rounded-xl shadow-lg p-6 max-w-md w-full relative">
+    <button onclick="closeDoctorModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Qualifications & Expertise & Treatment Philosophy -->
+<section class="py-16 bg-slate-50">
+  <h2 class="text-3xl font-bold text-center mb-10 animate-fade-up">
+    योग्यता और विशेषज्ञता
+  </h2>
+
+  <!-- Single Big Card -->
+  <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-lg p-6 md:p-10
+              hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center space-y-6">
+
+    <!-- Section 1: Education -->
+    <div class="bg-emerald-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-emerald-600 text-4xl mb-4">🎓</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-emerald-800">शिक्षा</h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-emerald-600">✔</span> BHMS (MUHS नासिक)
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 2: Specialization -->
+    <div class="bg-teal-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-teal-600 text-4xl mb-4">🩺</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-teal-800">विशेषज्ञता</h3>
+      <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> दीर्घकालिक रोग
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> त्वचा और बाल
+        </li>
+        <li class="flex items-center gap-2 justify-center">
+          <span class="text-teal-600">✔</span> महिला और बाल स्वास्थ्य
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Approach -->
+    <div class="bg-lime-50 rounded-2xl p-6 w-full text-center">
+      <div class="text-lime-600 text-4xl mb-4">🌿</div>
+      <h3 class="font-semibold text-lg md:text-xl mb-4 text-lime-800">दृष्टिकोण</h3>
+      <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed">
+        व्यक्तिगत शास्त्रीय होम्योपैथी, जो ध्यान केंद्रित करती है
+        <span class="text-lime-700 font-semibold">मूल कारण से उपचार</span> पर।
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Treatment Philosophy -->
+    <section class="py-16 bg-slate-50 text-center">
+      <h2 class="text-3xl font-bold mb-6">उपचार दर्शन</h2>
+      <p class="text-slate-700 leading-relaxed max-w-3xl mx-auto">
+        “होम्योपैथी रोगी को पूरी तरह से देखती है, केवल बीमारी को नहीं।” हम सुरक्षित, कोमल और लंबे समय तक चलने वाले उपचार पर ध्यान केंद्रित करते हैं।
+      </p>
+    </section>
+  </section>
+
+  <!-- DOCTOR MODAL -->
+  <div id="doctorModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl max-w-lg w-full p-6 relative">
+      <button onclick="closeDoctorModal()" class="absolute top-3 right-3 text-xl">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- WHATSAPP -->
+  <a href="https://wa.me/911234567890" target="_blank" id="whatsapp-btn" class="fixed bottom-5 right-5">
+    <img src="/images/whatsapp-icon.png" alt="WhatsApp" class="w-12 h-12">
+  </a>
+
+  <!-- SCRIPT FOR TABS & MODAL -->
+  <script is:client>
+    const tabs = document.querySelectorAll('.doctor-tab');
+    const doctors = document.querySelectorAll('.doctor-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.getAttribute('data-doctor');
+        doctors.forEach(d => d.id === target ? d.classList.remove('hidden') : d.classList.add('hidden'));
+      });
+    });
+
+    function openDoctorModal(doctor) {
+      const modal = document.getElementById('doctorModal');
+      const content = document.getElementById('modalContent');
+      if (doctor === 'suresh') {
+        content.innerHTML = `<h2 class="text-xl font-bold mb-2">डॉ. सुरेश पाटील</h2>
+                             <p>DHMS, DI होमियो (लंदन)</p>
+                             <p class="mt-2">45+ वर्षों का अनुभव, तीव्र और पुरानी बीमारियों का उपचार।</p>
+                             <a href="https://wa.me/919209846029" target="_blank" class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded">WhatsApp पर चैट करें</a>`;
+      } else {
+        content.innerHTML = `<h2 class="text-xl font-bold mb-2">डॉ. पुनम पाटील</h2>
+                             <p>BHMS (MUHS नासिक)</p>
+                             <p class="mt-2">7+ वर्षों का अनुभव, महिला और बाल स्वास्थ्य, त्वचा और तनाव विकार विशेषज्ञ।</p>
+                             <a href="https://wa.me/917028655808" target="_blank" class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded">WhatsApp पर चैट करें</a>`;
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeDoctorModal() {
+      document.getElementById('doctorModal').classList.add('hidden');
+    }
+  </script>
+
+</Layout>

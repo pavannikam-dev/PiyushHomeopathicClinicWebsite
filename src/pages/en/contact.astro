@@ -1,0 +1,167 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Contact Us | Piyush Homeopathy Clinic">
+
+  <!-- ================= Contact Us ================= -->
+ <!-- Contact Section - Colorful & Responsive -->
+ <!-- Header -->
+  <header class="pt-16 pb-12 bg-emerald-50 text-center">
+    <h1 class="text-4xl font-bold text-emerald-700">Contact Us</h1>
+    <p class="text-red-600 mt-2 font-medium">
+      For medical emergencies, call <strong>108</strong> immediately.
+    </p>
+  </header>
+<section class="py-12 bg-emerald-50">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Branch 1 Card -->
+    <div class="bg-gradient-to-br from-emerald-100 to-emerald-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition space-y-4">
+      <h3 class="text-lg font-bold text-emerald-800 flex items-center gap-2">🏥 Hospital Branch 1</h3>
+      <h5 class="text-sm font-medium text-emerald-700">Gandhi Chowk, Chopda, Maharashtra 425107.</h5>
+      <a href="tel:+917028655808" class="inline-block text-green-700 font-semibold">📞 +91 7028655808</a>
+
+      <!-- Timings -->
+      <div class="flex flex-col md:flex-row md:space-x-3 space-y-2 md:space-y-0">
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">⏰ 10 AM to 1 PM</p>
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">⏰ 5 PM to 8 PM</p>
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">🛑 Saturday Closed</p>
+      </div>
+
+      <iframe
+        class="w-full h-44 rounded-xl border-2 border-emerald-300 mt-3"
+        src="https://www.google.com/maps?q=Shop No-6, Chaitnydeep Market, Gandhi Chowk, Chopda, Maharashtra 425107+1&output=embed"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <!-- Branch 2 Card -->
+    <div class="bg-gradient-to-br from-emerald-100 to-emerald-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition space-y-4">
+      <h3 class="text-lg font-bold text-emerald-800 flex items-center gap-2">🏥 Hospital Branch 2</h3>
+      <h5 class="text-sm font-medium text-emerald-700">Opposite Nimani Bus Stand, Panchvati, Nashik.</h5>
+      <a href="tel:+919822599206" class="inline-block text-green-700 font-semibold">📞 +91 9822599206</a>
+
+      <div class="flex flex-col md:flex-row md:space-x-3 space-y-2 md:space-y-0">
+        <p class="bg-white px-3 py-1 rounded shadow text-gray-800 flex items-center gap-1">⏰ 9 AM to 6 PM</p>
+      </div>
+
+      <iframe
+        class="w-full h-44 rounded-xl border-2 border-emerald-300 mt-3"
+        src="https://www.google.com/maps?q=Shop No-6, Chaitnydeep Market, Gandhi Chowk, Chopda, Maharashtra 425107+2&output=embed"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <!-- Inside your Astro component -->
+<form
+  class="bg-gradient-to-br from-white to-emerald-50 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition space-y-4"
+  onsubmit="sendWhatsApp(); return false;"
+>
+  <h3 class="text-xl font-bold text-emerald-700">Appointment / Inquiry</h3>
+
+  <input id="name" name="name" required placeholder="Name" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400" />
+  <input id="phone" name="phone" required placeholder="Phone" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400" />
+  <input id="date" name="date" type="date" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400" />
+  <select id="reason" name="reason" class="w-full border border-emerald-300 p-2 rounded focus:ring-2 focus:ring-emerald-400">
+    <option>Appointment Request</option>
+    <option>General Inquiry</option>
+    <option>Billing</option>
+    <option>Feedback</option>
+  </select>
+  <textarea id="message" name="message" placeholder="Message" class="w-full border border-emerald-300 p-2 rounded h-24 focus:ring-2 focus:ring-emerald-400"></textarea>
+
+  <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-lg hover:bg-emerald-700 transition transform hover:-translate-y-0.5">
+    Send via WhatsApp
+  </button>
+</form>
+
+<script type="text/javascript" client:load>
+function sendWhatsApp() {
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const date = document.getElementById("date").value;
+  const reason = document.getElementById("reason").value;
+  const message = document.getElementById("message").value.trim();
+
+  const whatsappNumber = "917028655808"; // hospital number
+
+  const formattedMessage = 
+`🏥 *Hospital Inquiry*
+
+👤 Name: ${name}
+📞 Phone: ${phone}
+📅 Appointment Date: ${date || "Not specified"}
+📌 Reason: ${reason}
+
+📝 Message:
+${message || "N/A"}
+
+⚠️ Non-urgent inquiry`;
+
+  const encodedMessage = encodeURIComponent(formattedMessage);
+  const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+  window.open(url, "_blank");
+}
+</script>
+
+
+  </div>
+</section>
+
+
+  <!-- Floating WhatsApp Button -->
+  <a
+    href="https://wa.me/917028655808"
+    target="_blank"
+    class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg text-xl hover:bg-green-600 transition"
+  >
+    🟢
+  </a>
+
+  <!-- WhatsApp & Email Scripts -->
+  <script type="text/javascript">
+    const whatsappNumber = "917028655808";
+    const emailAddress = "hospital@email.com";
+
+    function sendWhatsApp() {
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const date = document.getElementById("date").value;
+      const reason = document.getElementById("reason").value;
+      const message = document.getElementById("message").value.trim();
+
+      const formattedMessage = `🏥 *Hospital Inquiry*
+
+👤 Name: ${name}
+📞 Phone: ${phone}
+📅 Appointment Date: ${date || "Not specified"}
+📌 Reason: ${reason}
+
+📝 Message:
+${message || "N/A"}
+
+⚠️ Non-urgent inquiry`;
+
+      const encodedMessage = encodeURIComponent(formattedMessage);
+      const url = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+      window.open(url, "_blank");
+    }
+
+    function sendEmail() {
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const date = document.getElementById("date").value;
+      const reason = document.getElementById("reason").value;
+      const message = document.getElementById("message").value;
+
+      const subject = "Hospital Inquiry";
+      const body = `Name: ${name}\nPhone: ${phone}\nDate: ${date}\nReason: ${reason}\nMessage: ${message}`;
+      window.location.href = `mailto:${emailAddress}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+    }
+  </script>
+
+</Layout>

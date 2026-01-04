@@ -1,0 +1,138 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "Patient Testimonials | Piyush Homeopathy Clinic";
+const description =
+  "Read real patient reviews and testimonials for Piyush Homeopathy Clinic. Natural, safe and effective homeopathic treatment.";
+---
+
+<Layout title={title} description={description}>
+
+  <!-- ================= PAGE HEADER ================= -->
+  <header class="pt-28 pb-16 bg-gradient-to-r from-emerald-50 to-teal-50 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-emerald-700">
+      Patient Testimonials
+    </h1>
+    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+      Real experiences from patients treated with safe and natural homeopathy
+    </p>
+  </header>
+
+  <!-- ================= GOOGLE REVIEWS ================= -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-emerald-700">
+        Latest Patient Reviews
+      </h2>
+
+      <div
+        id="googleReviews"
+        class="mt-10 grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+      ></div>
+    </div>
+  </section>
+
+  <!-- ================= SHARE REVIEW ================= -->
+  <section class="pb-16">
+    <div class="container mx-auto px-4">
+      <div
+        class="rounded-2xl p-8 md:p-10 bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-xl"
+      >
+        <h3 class="text-2xl font-semibold text-center">
+          Share Your Experience
+        </h3>
+        <p class="mt-2 text-emerald-100 text-center">
+          Your feedback helps others choose natural healing
+        </p>
+
+        <!-- WhatsApp -->
+        <div class="text-center mt-6">
+          <a
+            href="https://wa.me/911234567890?text=Hello%20Doctor,%20I%20would%20like%20to%20share%20my%20review"
+            target="_blank"
+            class="inline-block bg-white text-emerald-700 px-6 py-3 rounded-md font-medium shadow hover:bg-emerald-50 transition"
+          >
+            Share Review on WhatsApp
+          </a>
+        </div>
+
+        <!-- Google Form -->
+        <div class="mt-8 bg-white rounded-xl overflow-hidden">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSdmszkif8wZ0wwuu3uQPrEOen2BZ9zLFTWLC9f0l75yYH4Isw/viewform?embedded=true"
+            class="w-full h-[650px]"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FLOATING WHATSAPP ================= -->
+  <a
+    href="https://wa.me/911234567890"
+    target="_blank"
+    class="fixed bottom-5 right-5 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition z-40"
+    aria-label="WhatsApp"
+  >
+    <img src="/images/whatsapp-icon.png" alt="WhatsApp" class="w-8 h-8" />
+  </a>
+
+  <!-- ================= CLIENT SCRIPT ================= -->
+  <script is:client>
+    const sheetURL =
+      "https://docs.google.com/spreadsheets/d/1WqOfudz3vRZY0ejS5W8GZKgkCuPXLgvEMo_w3lE1uVA/gviz/tq?tqx=out:json";
+
+    fetch(sheetURL)
+      .then(res => res.text())
+      .then(text => {
+        const json = JSON.parse(text.substring(47, text.length - 2));
+        const rows = json.table.rows;
+
+        const container = document.getElementById("googleReviews");
+
+        const approvedReviews = rows.filter(
+          row => (row.c[5]?.v || "").toUpperCase() === "YES"
+        );
+
+        if (!approvedReviews.length) {
+          container.innerHTML =
+            "<p class='col-span-full text-center text-slate-500'>No approved reviews yet.</p>";
+          return;
+        }
+
+        container.innerHTML = approvedReviews
+          .slice(-6)
+          .reverse()
+          .map(row => {
+            const name = row.c[1]?.v || "Anonymous";
+            let rating = parseInt(row.c[2]?.v) || 5;
+            rating = Math.min(Math.max(rating, 1), 5);
+            const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+            const review = row.c[3]?.v || "";
+            const treatment = row.c[4]?.v || "";
+
+            return `
+              <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition">
+                <p class="italic text-gray-800 text-base">“${review}”</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <span class="font-semibold text-emerald-700">— ${name}</span>
+                  <span class="text-yellow-400 text-lg">${stars}</span>
+                </div>
+                ${
+                  treatment
+                    ? `<p class="text-gray-500 text-sm mt-2">${treatment}</p>`
+                    : ""
+                }
+              </div>
+            `;
+          })
+          .join("");
+      })
+      .catch(() => {
+        document.getElementById("googleReviews").innerHTML =
+          "<p class='col-span-full text-center text-red-500'>Unable to load reviews.</p>";
+      });
+  </script>
+
+</Layout>

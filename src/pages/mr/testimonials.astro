@@ -1,0 +1,126 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "रुग्ण अभिप्राय | पियूष होमिओपॅथी क्लिनिक";
+const description =
+  "पियूष होमिओपॅथी क्लिनिकमधील रुग्णांचे खरे अनुभव आणि अभिप्राय वाचा. सुरक्षित व नैसर्गिक होमिओपॅथी उपचार.";
+---
+
+<Layout title={title} description={description}>
+
+  <!-- ================= PAGE HEADER ================= -->
+  <header class="pt-28 pb-16 bg-gradient-to-r from-emerald-50 to-teal-50 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-emerald-700">
+      रुग्ण अभिप्राय
+    </h1>
+    <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
+      सुरक्षित व नैसर्गिक होमिओपॅथी उपचार घेतलेल्या रुग्णांचे खरे अनुभव
+    </p>
+  </header>
+
+  <!-- ================= GOOGLE REVIEWS ================= -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-emerald-700">
+        अलीकडील रुग्ण अभिप्राय
+      </h2>
+
+      <div
+        id="googleReviews"
+        class="mt-10 grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+      ></div>
+    </div>
+  </section>
+
+  <!-- ================= SHARE REVIEW ================= -->
+  <section class="pb-16">
+    <div class="container mx-auto px-4">
+      <div class="rounded-2xl p-8 md:p-10 bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-xl">
+        <h3 class="text-2xl font-semibold text-center">
+          आपला अनुभव शेअर करा
+        </h3>
+        <p class="mt-2 text-emerald-100 text-center">
+          तुमचा अभिप्राय इतरांना नैसर्गिक उपचार निवडण्यासाठी मदत करतो
+        </p>
+
+        <!-- WhatsApp -->
+        <div class="text-center mt-6">
+          <a
+            href="https://wa.me/911234567890?text=नमस्कार%20डॉक्टर,%20मला%20माझा%20अभिप्राय%20शेअर%20करायचा%20आहे"
+            target="_blank"
+            class="inline-block bg-white text-emerald-700 px-6 py-3 rounded-md font-medium shadow hover:bg-emerald-50 transition"
+          >
+            WhatsApp वर अभिप्राय शेअर करा
+          </a>
+        </div>
+
+        <!-- Google Form -->
+        <div class="mt-8 bg-white rounded-xl overflow-hidden">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSdmszkif8wZ0wwuu3uQPrEOen2BZ9zLFTWLC9f0l75yYH4Isw/viewform?embedded=true"
+            class="w-full h-[650px]"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FLOATING WHATSAPP ================= -->
+  <a
+    href="https://wa.me/911234567890"
+    target="_blank"
+    class="fixed bottom-5 right-5 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition z-40"
+  >
+    <img src="/images/whatsapp-icon.png" alt="WhatsApp" class="w-8 h-8" />
+  </a>
+
+  <!-- ================= CLIENT SCRIPT ================= -->
+  <script is:client>
+    const sheetURL =
+      "https://docs.google.com/spreadsheets/d/1WqOfudz3vRZY0ejS5W8GZKgkCuPXLgvEMo_w3lE1uVA/gviz/tq?tqx=out:json";
+
+    fetch(sheetURL)
+      .then(res => res.text())
+      .then(text => {
+        const json = JSON.parse(text.substring(47, text.length - 2));
+        const rows = json.table.rows;
+
+        const container = document.getElementById("googleReviews");
+        const approved = rows.filter(
+          r => (r.c[5]?.v || "").toUpperCase() === "YES"
+        );
+
+        if (!approved.length) {
+          container.innerHTML =
+            "<p class='col-span-full text-center text-slate-500'>सध्या कोणतेही मंजूर अभिप्राय उपलब्ध नाहीत.</p>";
+          return;
+        }
+
+        container.innerHTML = approved
+          .slice(-6)
+          .reverse()
+          .map(r => {
+            const name = r.c[1]?.v || "अज्ञात";
+            let rating = parseInt(r.c[2]?.v) || 5;
+            rating = Math.min(Math.max(rating, 1), 5);
+            const stars = "★".repeat(rating) + "☆".repeat(5 - rating);
+            const review = r.c[3]?.v || "";
+            const treatment = r.c[4]?.v || "";
+
+            return `
+              <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition">
+                <p class="italic text-gray-800">“${review}”</p>
+                <div class="mt-4 flex justify-between items-center">
+                  <span class="font-semibold text-emerald-700">— ${name}</span>
+                  <span class="text-yellow-400 text-lg">${stars}</span>
+                </div>
+                ${treatment ? `<p class="text-gray-500 text-sm mt-2">${treatment}</p>` : ""}
+              </div>
+            `;
+          })
+          .join("");
+      });
+  </script>
+
+</Layout>
