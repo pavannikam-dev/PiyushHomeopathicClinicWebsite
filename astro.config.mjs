@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  output: 'static',
-  base: '/',
-  integrations: [tailwind()],
+  site: 'https://pavannikam-dev.github.io',  // Replace with your GitHub username
+  base: '/PiyushHomeopathicClinicWebsite', // Must match your repo name
 });
