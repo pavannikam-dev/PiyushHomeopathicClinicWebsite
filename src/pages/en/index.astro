@@ -2,24 +2,83 @@
 import Layout from "../../layouts/Layout.astro";
 
 const treatments = [
-  { icon: "🩺", title: "Skin Disorders (Eczema, Psoriasis, Acne)", details: "We provide homeopathic care for eczema, psoriasis, acne, and other skin conditions to restore healthy skin naturally." },
-  { icon: "💇", title: "Hair Fall & Alopecia", details: "Treatment for hair fall, alopecia, and thinning hair using homeopathic remedies to strengthen hair roots." },
-  { icon: "🫁", title: "Asthma & Allergy", details: "Homeopathy for asthma, allergies, and respiratory issues to improve lung function and reduce flare-ups." },
-  { icon: "🍽️", title: "Digestive Problems", details: "Treatment for acidity, indigestion, constipation, and other digestive disorders using natural remedies." },
-  { icon: "👩‍⚕️", title: "PCOD & Women’s Health", details: "Care for PCOD, menstrual irregularities, hormonal imbalance, and overall women’s health issues." },
-  { icon: "🩸", title: "Diabetes & Thyroid", details: "Homeopathic management for diabetes, thyroid disorders, and metabolic issues for better control and wellbeing." },
-  { icon: "👶", title: "Child Diseases", details: "Treatment for common pediatric ailments like fever, cold, cough, digestive problems, and skin issues in children." },
-  { icon: "🦴", title: "Arthritis & Joint Pain", details: "Care for arthritis, joint pain, and mobility issues to improve comfort and flexibility." },
-  { icon: "🧠", title: "Stress, Anxiety & Mental Disorders", details: "Homeopathy for stress, anxiety, depression, and other mental health conditions." },
-  { icon: "🌬️", title: "Respiratory Disorders (Asthma, Sinusitis)", details: "Treatment for chronic cough, asthma, sinusitis, and nasal allergies." },
-  { icon: "🚽", title: "Piles, Fissure & Fistula", details: "Non-surgical care for hemorrhoids, anal fissures, and fistula with homeopathic remedies." },
-  { icon: "🧬", title: "Corn, Warts & Vitiligo", details: "Treatment for skin growths, corns, warts, and pigment disorders like vitiligo." },
-  { icon: "⚕️", title: "Sexual Disorders", details: "Care for erectile dysfunction, premature ejaculation, prostatitis, and hormonal imbalance." },
-  { icon: "🧪", title: "Kidney & Gall Bladder Stones", details: "Homeopathic management for kidney stones, gallstones, and urinary tract issues." },
-  { icon: "❤️", title: "BP, Cholesterol & Diabetes", details: "Management of blood pressure, cholesterol, and diabetes naturally with lifestyle guidance." },
-  { icon: "🤕", title: "Migraine", details: "Relief from migraines, tension headaches, and recurring headaches using gentle homeopathic remedies." },
-  { icon: "🧘", title: "Mental Wellness & Stress Relief", details: "Improving mental wellness, reducing stress, and promoting emotional balance." },
+  {
+    icon: "🩺",
+    title: "Skin Disorders",
+    details: "Treatment for eczema, psoriasis, itching, skin allergies, acne, facial spots, wrinkles, dark patches, vitiligo, warts, and other chronic skin conditions."
+  },
+  {
+    icon: "💇",
+    title: "Hair Disorders",
+    details: "Treatment for hair fall, alopecia, thinning hair, dandruff, premature greying, hair weakness, and scalp problems."
+  },
+  {
+    icon: "👩‍⚕️",
+    title: "Women’s Health & Gynecological Disorders",
+    details: "Care for leucorrhea (white discharge), menstrual disorders, pelvic pain, swelling, post-delivery complications, hormonal imbalance, and infertility."
+  },
+  {
+    icon: "🍽️",
+    title: "Digestive Disorders",
+    details: "Treatment for acidity, indigestion, gas, constipation, abdominal pain, liver disorders, bile imbalance, and gastric ulcers."
+  },
+  {
+    icon: "🧠",
+    title: "Mental Health Disorders",
+    details: "Homeopathic treatment for stress, anxiety, depression, insomnia, emotional imbalance, and chronic mental fatigue."
+  },
+  {
+    icon: "🧩",
+    title: "Psychiatric Disorders",
+    details: "Treatment for schizophrenia (behavioral and speech disturbances), hallucinations, delusions, obsessive-compulsive disorder (OCD), and severe anxiety disorders."
+  },
+  {
+    icon: "🫁",
+    title: "Respiratory Disorders",
+    details: "Treatment for asthma, sinusitis, chronic cough, breathing difficulty, nasal allergies, and recurrent respiratory infections."
+  },
+  {
+    icon: "👶",
+    title: "Child Health & Pediatric Disorders",
+    details: "Care for fever, cold, cough, digestive issues, skin problems, immunity-related illnesses, and developmental concerns in children."
+  },
+  {
+    icon: "🦴",
+    title: "Arthritis & Joint Disorders",
+    details: "Management of arthritis, joint pain, stiffness, swelling, and mobility problems with long-term relief."
+  },
+  {
+    icon: "🚽",
+    title: "Piles, Fissure & Fistula",
+    details: "Non-surgical treatment for piles (hemorrhoids), anal fissure, fistula, pain, bleeding, and discomfort."
+  },
+  {
+    icon: "🧬",
+    title: "Skin Growth & Pigmentation Disorders",
+    details: "Treatment for corns, warts, skin growths, pigmentation disorders, and vitiligo."
+  },
+  {
+    icon: "🧪",
+    title: "Kidney & Gall Bladder Stones",
+    details: "Homeopathic management for kidney stones, gall bladder stones, urinary tract infections, and urinary disorders."
+  },
+  {
+    icon: "❤️",
+    title: "Lifestyle Diseases",
+    details: "Natural management of high blood pressure, cholesterol, diabetes, thyroid disorders, and metabolic syndrome."
+  },
+  {
+    icon: "🤕",
+    title: "Migraine & Headache Disorders",
+    details: "Relief from migraine, stress-related headaches, chronic and recurring headaches."
+  },
+  {
+    icon: "🧘",
+    title: "Mental Wellness & Stress Management",
+    details: "Improving mental wellness, reducing stress, enhancing emotional balance, focus, and overall quality of life."
+  }
 ];
+
 ---
 
 <Layout title="Dr. Piyush Clinic — Natural Healing" description="Piyush Homeopathic Clinic offers safe, natural and effective homeopathic treatment for chronic and acute diseases.">
@@ -160,7 +219,7 @@ const treatments = [
   <header class="pt-28 pb-16 bg-gradient-to-r from-emerald-50 to-teal-50 text-center">
     <h1 class="text-4xl md:text-5xl font-extrabold text-emerald-700">About Doctors</h1>
     <p class="mt-4 text-slate-600 max-w-2xl mx-auto">
-      Meet our experienced homeopathy physicians dedicated to natural healing.
+      Meet our 50 years experienced homeopathic physicians dedicated to homeopathic healing.
     </p>
   </header>
 
@@ -175,16 +234,16 @@ const treatments = [
       </div>
       <div>
         <h2 class="text-3xl font-bold text-emerald-700">Dr. Suresh Patil</h2>
-        <p class="mt-2 font-medium text-slate-600">DHMS, DI Homeo (London)</p>
+        <p class="mt-2 font-medium text-slate-600">DHMS (Reg No.7715), DI Homeo (London)</p>
         <p class="mt-6 text-slate-700 leading-relaxed">
-          Dr.Suresh Patil has more than <strong>45+ years</strong> of experience in treating acute and chronic diseases using classical homeopathy.
+          Dr.Suresh Patil has more than <strong>50+ years</strong> of experience in treating acute and chronic diseases using classical homeopathy.
         </p>
         
 
   <div class="mt-6 grid grid-cols-2 gap-4">
   <!-- Card 1 -->
   <div class="bg-white shadow rounded-lg p-4 text-center stat-card">
-    <h3 class="text-2xl font-bold text-emerald-600 counter" data-target="45">0+</h3>
+    <h3 class="text-2xl font-bold text-emerald-600 counter" data-target="50">0+</h3>
     <p class="text-sm text-gray-600">Years Experience</p>
   </div>
 
@@ -232,7 +291,7 @@ const treatments = [
       </h3>
       <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
         <li class="flex items-center gap-2 justify-center">
-          <span class="text-emerald-600">✔</span> DHMS
+          <span class="text-emerald-600">✔</span> DHMS (Reg No.7715)
         </li>
         <li class="flex items-center gap-2 justify-center">
           <span class="text-emerald-600">✔</span> DI Homeo (London)
@@ -248,7 +307,7 @@ const treatments = [
       </h3>
       <ul class="text-sm md:text-base text-slate-700 space-y-2 font-medium inline-block text-left">
         <li class="flex items-center gap-2 justify-center">
-          <span class="text-teal-600">✔</span> Chronic Diseases
+          <span class="text-teal-600">✔</span> All types of chronic physical and mental illnesses.
         </li>
         <li class="flex items-center gap-2 justify-center">
           <span class="text-teal-600">✔</span> Skin & Hair
@@ -266,7 +325,7 @@ const treatments = [
         Approach
       </h3>
       <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed">
-        Personalized classical homeopathy focused on
+        Personalized scientific homeopathy, with focused attention on family medical history.
         <span class="text-lime-700 font-semibold">root-cause healing</span>.
       </p>
     </div>
@@ -292,7 +351,7 @@ const treatments = [
         <h2 class="text-3xl font-bold text-emerald-700">Dr. Punam Patil</h2>
         <p class="mt-2 font-medium text-slate-600">BHMS (MUHS Nashik)</p>
         <p class="mt-6 text-slate-700 leading-relaxed">
-          Dr.Punam Patil specializes in women & child health, skin disorders, and stress-related conditions with a holistic approach.
+         Dr. Poonam Patil is highly experienced in treating women’s and children’s health issues, skin diseases, and stress-related disorders, providing treatment with a holistic approach.
         </p>
         
         
@@ -361,7 +420,7 @@ const treatments = [
       <div class="text-lime-600 text-4xl mb-4">🌿</div>
       <h3 class="font-semibold text-lg md:text-xl mb-4 text-lime-800">Approach</h3>
       <p class="text-sm md:text-base text-slate-700 font-medium leading-relaxed">
-        Personalized classical homeopathy focused on
+        Personalized scientific homeopathy, with focused attention on family medical history.
         <span class="text-lime-700 font-semibold">root-cause healing</span>.
       </p>
     </div>
@@ -614,7 +673,7 @@ ${message || "N/A"}
       const modal = document.getElementById('doctorModal');
       const content = document.getElementById('modalContent');
       if (doc === 'suresh') {
-        content.innerHTML = `<h2 class="text-2xl font-bold mb-2">Dr. Suresh Patil</h2><p>DHMS, DI Homeo (London)</p>`;
+        content.innerHTML = `<h2 class="text-2xl font-bold mb-2">Dr. Suresh Patil</h2><p>DHMS (Reg No.7715), DI Homeo (London)</p>`;
       } else if (doc === 'punam') {
         content.innerHTML = `<h2 class="text-2xl font-bold mb-2">Dr. Punam Patil</h2><p>BHMS (MUHS Nashik)</p>`;
       }
@@ -679,7 +738,7 @@ ${message || "N/A"}
       const content = document.getElementById('modalContent');
       if (doctor === 'suresh') {
         content.innerHTML = `<h2 class="text-xl font-bold mb-2">Dr. Suresh Patil</h2>
-                             <p>DHMS, DI Homeo (London)</p>
+                             <p>DHMS (Reg No.7715), DI Homeo (London)</p>
                              <p class="mt-2">45+ years experience treating acute & chronic diseases.</p>
                              <a href="https://wa.me/919209846029" target="_blank" class="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded">Chat on WhatsApp</a>`;
       } else {

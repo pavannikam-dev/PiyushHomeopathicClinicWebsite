@@ -3,225 +3,168 @@ import "../styles/global.css";
 
 const { title } = Astro.props;
 
-const currentUrl = Astro.url.pathname;
+// Safe currentLang extraction
+const currentUrl = Astro.url?.pathname || '';
 const pathParts = currentUrl.split('/').filter(Boolean);
-const currentLang = pathParts[0] || 'en';
+const currentLang = ['en','hi','mr'].includes(pathParts[0]) ? pathParts[0] : 'en';
 const currentPage = pathParts.slice(1).join('/') || '';
+
 const langs = ['en', 'hi', 'mr'];
 const langNames = { en: 'EN', hi: 'हिंदी', mr: 'मराठी' };
 
 const menuLabels = {
-  en: {
-    home: 'Home',
-    about: 'About Doctors',
-    treatments: 'Treatments',
-    whyhomeopathy: 'Why Homeopathy',
-    testimonials: 'Testimonials',
-    contact:'Contact',
-  },
-  hi: {
-    home: 'होम',
-    about: 'डॉक्टरों के बारे में',
-    treatments: 'उपचार',
-    whyhomeopathy: 'होम्योपैथी क्यों',
-    testimonials: 'प्रशंसापत्र',
-    contact:'संपर्क',
-  },
-  mr: {
-    home: 'मुख्यपृष्ठ',
-    about: 'डॉक्टरांविषयी',
-    treatments: 'उपचार',
-    whyhomeopathy: 'होमिओपॅथी का',
-    testimonials: 'प्रशंसापत्रे',
-    contact:'संपर्क',
-  },
+  en: { home: 'Home', about: 'About Doctors', treatments: 'Treatments', whyhomeopathy: 'Why Homeopathy', testimonials: 'Testimonials', contact:'Contact' },
+  hi: { home: 'होम', about: 'डॉक्टरों के बारे में', treatments: 'उपचार', whyhomeopathy: 'होम्योपैथी क्यों', testimonials: 'प्रशंसापत्र', contact:'संपर्क' },
+  mr: { home: 'मुख्यपृष्ठ', about: 'डॉक्टरांविषयी', treatments: 'उपचार', whyhomeopathy: 'होमिओपॅथी का', testimonials: 'प्रशंसापत्रे', contact:'संपर्क' },
 };
 
 const clinicNames = {
-  en: "Piyush Homeopathic Clinic",
-  hi: "पियूष होम्योपैथिक क्लिनिक",
-  mr: "पियूष होमिओपॅथिक क्लिनिक"
+  en: ["Piyush","Homeopathic","Clinic"],
+  hi: ["पियूष","होम्योपैथिक","क्लिनिक"],
+  mr: ["पीयुष","होमिओपॅथिक","क्लिनिक"]  
 };
 
----
+// Icon mapping for menus
+const menuIcons = {
+  home: 'fas fa-home',
+  about: 'fas fa-user-md',
+  treatments: 'fas fa-stethoscope',
+  whyhomeopathy: 'fas fa-leaf',
+  testimonials: 'fas fa-comment-dots',
+  contact: 'fas fa-envelope'
+};
 
+// Helper functions for safe access
+const getClinicName = (lang = 'en') => clinicNames[lang] ?? clinicNames['en'];
+const getMenuLabel = (lang = 'en') => menuLabels[lang] ?? menuLabels['en'];
+---
 <!DOCTYPE html>
 <html lang={currentLang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
   <!-- HEADER -->
- <header class="bg-green-100 text-green-700 p-4 shadow-md w-full relative">
+  <header class="bg-green-100 text-green-700 p-4 shadow-md w-full relative">
 
-
-    <div class="max-w-7xl mx-auto px-2 py-4 flex items-center justify-between">
-
-
-
-<!-- Logo -->
-   <div class="flex items-center gap-4 order-1 md:order-1">
-      <!-- Left Logo -->
-       <img src="/images/download.png" alt="Homeopathy Logo Left" class="h-10 w-10 object-contain" />
-       <!-- Clinic Name -->
-      <!-- Header Clinic Name -->
-<span class="text-2xl font-bold">{clinicNames[currentLang]}</span>
-
-   </div>
-
-
-      <!-- Desktop Menu -->
-      <nav class="hidden md:flex flex-1 justify-center gap-8 order-2">
-        <a href={`/${currentLang}/`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].home}</a>
-        <a href={`/${currentLang}/about`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].about}</a>
-        <a href={`/${currentLang}/treatments`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].treatments}</a>
-        <a href={`/${currentLang}/whyhomeopathy`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].whyhomeopathy}</a>
-        <a href={`/${currentLang}/testimonials`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].testimonials}</a>
-        <a href={`/${currentLang}/contact`} class="hover:text-yellow-300 font-semibold">{menuLabels[currentLang].contact}</a>
-      </nav>
-
-      <!-- Mobile Hamburger + Language -->
-      <div class="flex flex-col items-center gap-2 order-3 md:order-3 relative">
-<div class="flex gap-2 text-sm md:hidden mt-1"></div>
-<div class="flex gap-2 text-sm md:hidden mt-1"></div>
-<div class="flex gap-2 text-sm md:hidden mt-1"></div>
-        <!-- Hamburger (Mobile) - floated above header -->
-        <button id="hamburger" class="md:hidden text-3xl focus:outline-none -mt-12 relative z-50">
-          &#9776;
-        </button>
-<div class="flex gap-2 text-sm md:hidden mt-1"></div>
-<div class="flex gap-2 text-sm md:hidden mt-1"></div>
-        <!-- Language Switcher (Mobile) below hamburger -->
-        <div class="flex gap-2 text-sm md:hidden mt-1">
-          {langs.map((lang, i) => (
-            <>
-              <a href={`/${lang}/${currentPage}`.replace(/\/$/, '')} class="hover:text-yellow-300">{langNames[lang]}</a>
-              {i < langs.length - 1 ? '|' : ''}
-            </>
-          ))}
+    <!-- Mobile Header -->
+    <div class="md:hidden max-w-7xl mx-auto px-2 py-4 flex items-start justify-between">
+      <div class="flex gap-4">
+        <img src="/images/download.png" alt="Logo" class="h-24 w-24 sm:h-32 sm:w-32 object-contain"/>
+        <div class="flex flex-col leading-tight text-left">
+          <span class="text-xs text-gray-700 font-bold">since 1980</span>
+          <div class="flex flex-col">
+            <span class="text-3xl sm:text-4xl font-extrabold">{getClinicName(currentLang)[0]}</span>
+            <span class="text-2xl sm:text-3xl font-bold">{getClinicName(currentLang).slice(1).join(' ')}</span>
+          </div>
         </div>
-
-        <!-- Language Switcher Desktop -->
-        <div class="hidden md:flex gap-2 text-sm mt-0">
-          {langs.map((lang, i) => (
-            <>
-              <a href={`/${lang}/${currentPage}`.replace(/\/$/, '')} class="hover:text-yellow-300">{langNames[lang]}</a>
-              {i < langs.length - 1 ? '|' : ''}
-            </>
-          ))}
-        </div>
-
       </div>
 
+      <div class="flex items-center sm:hidden">
+        <button id="hamburger" class="flex flex-col items-center justify-center p-3 rounded-lg border border-gray-300 transition-all duration-300 ease-in-out hover:bg-gray-100 hover:scale-105 active:scale-95 focus:outline-none" aria-label="Open Menu">
+          <span class="text-2xl leading-none">☰</span>
+          <span id="menuText" class="text-xs mt-1 text-gray-600">See Menu</span>
+        </button>
+      </div>
     </div>
 
+    <!-- Mobile Language Switcher -->
+    <div class="flex justify-end gap-2 text-sm px-2 mt-2 md:hidden">
+      {langs.map((lang, i) => (
+        <span key={lang}>
+          <a href={`/${lang}/${currentPage}`.replace(/\/$/, '')} class="hover:text-yellow-300">{langNames[lang]}</a>
+          {i < langs.length - 1 ? '|' : ''}
+        </span>
+      ))}
+    </div>
+
+    <!-- Desktop Header -->
+    <div class="hidden md:flex max-w-7xl mx-auto px-4 py-4 items-center justify-between">
+      <div class="flex items-center gap-4">
+        <img src="/images/download.png" alt="Logo" class="h-40 w-40 object-contain flex-shrink-0" />
+        <div class="flex flex-col leading-tight">
+          <span class="text-sm text-gray-700 w-full text-right pr-4 font-bold">since 1980</span>
+          <div class="flex items-baseline gap-2">
+            <span class="text-4xl font-extrabold">{getClinicName(currentLang)[0]}</span>
+            <span class="text-2xl font-bold">{getClinicName(currentLang).slice(1).join(' ')}</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-2 text-sm">
+        {langs.map((lang, i) => (
+          <span key={lang}>
+            <a href={`/${lang}/${currentPage}`.replace(/\/$/, '')} class="hover:text-yellow-300">{langNames[lang]}</a>
+            {i < langs.length - 1 ? '|' : ''}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Desktop Menu -->
+    <nav class="hidden md:flex max-w-7xl mx-auto px-4 py-2 justify-start gap-8 font-semibold overflow-x-auto">
+      {Object.entries(getMenuLabel(currentLang)).map(([key, label]) => (
+        <a href={`/${currentLang}/${key === 'home' ? '' : key}`} class="hover:text-yellow-300 whitespace-nowrap flex items-center gap-1">
+          <i class={menuIcons[key]}></i>
+          {label}
+        </a>
+      ))}
+    </nav>
+
     <!-- Mobile Menu -->
-    
-    <!-- Mobile Menu -->
-<nav id="main-nav" class="hidden md:hidden flex-col gap-2 px-6 py-4 bg-yellow-100 text-black absolute top-full left-0 w-full z-40">
-
-  <a href={`/${currentLang}/`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
-    <i class="fas fa-home w-5"></i>
-    {menuLabels[currentLang].home}
-  </a>
-
-  <a href={`/${currentLang}/about`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
-    <i class="fas fa-user-md w-5"></i>
-    {menuLabels[currentLang].about}
-  </a>
-
-  <a href={`/${currentLang}/treatments`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
-    <i class="fas fa-stethoscope w-5"></i>
-    {menuLabels[currentLang].treatments}
-  </a>
-
-  <a href={`/${currentLang}/whyhomeopathy`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
-    <i class="fas fa-leaf w-5"></i>
-    {menuLabels[currentLang].whyhomeopathy}
-  </a>
-
-  <a href={`/${currentLang}/testimonials`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
-    <i class="fas fa-comment-dots w-5"></i>
-    {menuLabels[currentLang].testimonials}
-  </a>
-
-  <a href={`/${currentLang}/contact`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
-    <i class="fas fa-envelope w-5"></i>
-    {menuLabels[currentLang].contact}
-  </a>
-
-</nav>
+    <nav id="main-nav" class="hidden md:hidden flex-col gap-2 px-6 py-4 bg-yellow-100 text-black absolute top-full left-0 w-full z-40">
+      {Object.entries(getMenuLabel(currentLang)).map(([key, label]) => (
+        <a href={`/${currentLang}/${key === 'home' ? '' : key}`} class="flex items-center gap-2 py-2 hover:text-yellow-300 font-semibold">
+          <i class={menuIcons[key]}></i>
+          {label}
+        </a>
+      ))}
+    </nav>
 
   </header>
 
-  <!-- MAIN CONTENT -->
-  <main class="flex-1 w-full px-6 py-8">
-    <slot />
-  </main>
+  <main class="flex-1 w-full px-6 py-8"><slot /></main>
 
   <!-- FOOTER -->
   <footer class="bg-black text-white">
-  <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
-
-    <!-- Clinic Info -->
-    <div class="text-center md:text-left">
-      <h4 class="text-lg font-bold hover:text-yellow-400 transition duration-300">{clinicNames[currentLang]}</h4>
-      <p class="text-sm text-white/80 mt-1">Natural & safe homeopathic treatment.</p>
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+      <div class="text-center md:text-left">
+        <h4 class="text-lg font-bold hover:text-yellow-400 transition duration-300">{getClinicName(currentLang).join(' ')}</h4>
+        <p class="text-sm text-white/80 mt-1">Natural & safe homeopathic treatment.</p>
+      </div>
+      <div class="flex flex-wrap justify-center md:justify-start gap-6">
+        {['home','contact','treatments','whyhomeopathy'].map(key => (
+          <a href={`/${currentLang}/${key === 'home' ? '' : key}`} class="text-white text-sm hover:text-yellow-400">{getMenuLabel(currentLang)[key]}</a>
+        ))}
+      </div>
+      <div class="flex gap-4">
+        <a href="#" class="text-white hover:text-yellow-400 text-xl"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white hover:text-yellow-400 text-xl"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white hover:text-yellow-400 text-xl"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="text-white hover:text-yellow-400 text-xl"><i class="fab fa-twitter"></i></a>
+      </div>
     </div>
 
-    <!-- Footer Links -->
-    <div class="flex flex-wrap justify-center md:justify-start gap-6">
-      <a href={`/${currentLang}/`} class="text-white text-sm hover:text-yellow-400 transition relative after:block after:w-0 after:h-[2px] after:bg-yellow-400 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">
-        {menuLabels[currentLang].home}
-      </a>
-      <a href={`/${currentLang}/contact`} class="text-white text-sm hover:text-yellow-400 transition relative after:block after:w-0 after:h-[2px] after:bg-yellow-400 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">
-        {menuLabels[currentLang].contact}
-      </a>
-      <a href={`/${currentLang}/treatments`} class="text-white text-sm hover:text-yellow-400 transition relative after:block after:w-0 after:h-[2px] after:bg-yellow-400 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">
-        {menuLabels[currentLang].treatments}
-      </a>
-      <a href={`/${currentLang}/whyhomeopathy`} class="text-white text-sm hover:text-yellow-400 transition relative after:block after:w-0 after:h-[2px] after:bg-yellow-400 after:absolute after:bottom-0 after:left-0 after:transition-all after:duration-300 hover:after:w-full">
-        {menuLabels[currentLang].whyhomeopathy}
-      </a>
+    <div class="border-t border-white/30 text-center text-sm text-white/70 py-2 mt-2">
+      © <span id="year"></span> {getClinicName(currentLang).join(' ')} — All rights reserved.
     </div>
 
-    <!-- Social Icons -->
-    <div class="flex gap-4">
-      <a href="#" class="text-white hover:text-yellow-400 transition transform hover:-translate-y-1 hover:scale-110 text-xl"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" class="text-white hover:text-yellow-400 transition transform hover:-translate-y-1 hover:scale-110 text-xl"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="text-white hover:text-yellow-400 transition transform hover:-translate-y-1 hover:scale-110 text-xl"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#" class="text-white hover:text-yellow-400 transition transform hover:-translate-y-1 hover:scale-110 text-xl"><i class="fab fa-twitter"></i></a>
-    </div>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 
-  </div>
+  </footer>
 
-  <!-- Footer Bottom -->
-  <div class="border-t border-white/30 text-center text-sm text-white/70 py-2 mt-2">
-    © <span id="year"></span> {clinicNames[currentLang]} — All rights reserved.
-  </div>
-
-  <!-- Dynamic Year Script -->
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</footer>
-
-
-  <!-- Hamburger Toggle Script -->
+  <!-- Hamburger Toggle -->
   <script type="module">
     document.addEventListener('DOMContentLoaded', () => {
       const hamburger = document.getElementById('hamburger');
       const mainNav = document.getElementById('main-nav');
-      hamburger.addEventListener('click', () => {
-        mainNav.classList.toggle('hidden');
-      });
+      hamburger.addEventListener('click', () => mainNav.classList.toggle('hidden'));
     });
   </script>
 
